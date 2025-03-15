@@ -3,7 +3,9 @@ import './BarraNavegacao.css'
 const BarraNavegacao = () => {
   return (
     <div className="nav-bar">
-      <h3>Transporte universitário</h3>
+      <div className='nav-bar-area'>
+        <h2>Transporte universitário</h2>
+      </div>
 
     </div>
   )
