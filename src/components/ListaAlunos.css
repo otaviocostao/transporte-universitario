@@ -8,20 +8,22 @@
 }
 
 .date-area{
-    width: 45%;
+    width: 100%;
     display: flex;
-    justify-content: start;
+    justify-content: center;
 }
 
 .lista-alunos{
-    margin: 0;
     width: 45%;
     display: flex;
     justify-content: center;
     flex-direction: column;
     padding: 20px;
     border-radius: 10px;
-    background-color: #292929;
+    background-color: #ffff;
+    margin: 0;
+    width: 45%;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.05);
 }
 
 .ul-lista-alunos{
@@ -30,40 +32,54 @@
     padding: 0;
 }
 
+.paragraph-area{
+    width: 50% ;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+}
+
 .paragraph-college{
     font-size: 14pt;
-    font-weight: 600;
-    
+    font-weight: 700;
+    color: #393939;
 }
 
 .li-student{
     display: flex;
     justify-content: space-between;
-    border-bottom: #696969 1px solid;
-
+    align-items: center;
+    padding: 10px;
+    flex-wrap: wrap;
+    border-bottom: #99999986 1px solid;
+    color: #292929;
 }
 
 .li-college{
     display: flex;
 }
 
-.paragraph-student{}
 
 .list-buttons{
     display: flex;
-    align-items: center;
-    justify-content: center;
+    gap: 5px;
+    flex-wrap: wrap;
 }
 
 .button-ready {
     border-radius: 8px;
+    width: 40px;
+    height: 40px;
+    padding: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     border: 1px solid transparent;
-    padding: 5px;
     font-size: 12pt;
     font-family: inherit;
     background-color: #83c25f;
     cursor: pointer;
-    margin-left: 10px;
+
   }
   .button-ready:hover {
     background-color: #76ad56;
@@ -72,17 +88,43 @@
 
 
 .button-delete {
+    width: 40px;
+    height: 40px;
+    padding: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     border-radius: 8px;
     border: 1px solid transparent;
-    padding: 5px;
     font-size: 12pt;
     font-family: inherit;
     background-color: #e95858;
     cursor: pointer;
-    margin-left: 10px;
+
   }
   .button-delete:hover {
     background-color: #c94e4e;
+    border-color: #e87979;
+  }
+
+
+.button-edit {
+    width: 40px;
+    height: 40px;
+    padding: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 8px;
+    border: 1px solid transparent;
+    font-size: 12pt;
+    font-family: inherit;
+    background-color: #e9bb58;
+    cursor: pointer;
+    
+  }
+  .button-edit:hover {
+    background-color: #e0b048;
     border-color: #e87979;
   }
 
@@ -95,42 +137,9 @@
     flex-direction: column;
 }
 
-/* Ajusta a largura e centraliza a data */
-.date-area {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-}
-
-/* Ajusta o tamanho da lista para telas menores */
-.lista-alunos {
-    width: 45%;
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    padding: 20px;
-    border-radius: 10px;
-    background-color: #292929;
-}
-
-/* Faz os itens da lista ocuparem o espaço corretamente */
-.li-student {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    border-bottom: #696969 1px solid;
-    padding: 10px;
-    flex-wrap: wrap; /* Evita que o botão ultrapasse a linha */
-}
-
-.list-buttons {
-    display: flex;
-    gap: 10px; /* Adiciona espaço entre os botões */
-    flex-wrap: wrap;
-}
 
 /* Deixa os botões responsivos */
-.button-ready, .button-delete {
+.button-ready, .button-delete .button-edit {
     padding: 8px 12px;
     font-size: 12pt;
 }
@@ -146,8 +155,8 @@
     }
 
     .li-student {
-        flex-direction: column;
-        align-items: flex-start;
+        display: flex;
+        flex-direction: row;
     }
 
     .list-buttons {
@@ -167,17 +176,17 @@
     }
 
     .lista-alunos {
-        width: 90%;
+        width: 80%;
         padding: 15px;
     }
 
     .li-student {
-        flex-direction: column;
-        align-items: flex-start;
+        display: flex;
+        flex-direction: row;
     }
 
     .list-buttons {
-        width: 100%;
+        width: 40%;
         justify-content: space-between;
     }
 }
@@ -189,11 +198,37 @@
     }
 
     .lista-alunos {
-        width: 95%;
+        width: 85%;
     }
 
     .li-student {
-        flex-direction: column;
+        display: flex;
+        flex-direction: row;
+    }
+    
+    .list-buttons {
+        width: 40%;
+        justify-content: space-between;
+    }
+}
+
+@media screen and (max-width: 390px) {
+    .container-lista-alunos {
+        width: 100%;
+        padding: 5px;
     }
 
+    .lista-alunos {
+        width: 85%;
+    }
+
+    .li-student {
+        display: flex;
+        flex-direction: row;
+    }
+    
+    .list-buttons {
+        width: 45%;
+        justify-content: space-between;
+    }
 }

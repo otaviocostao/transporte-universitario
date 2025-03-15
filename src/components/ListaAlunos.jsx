@@ -1,4 +1,5 @@
-import "./ListaAlunos.css"
+import "./ListaAlunos.css";
+import { BsTrash3Fill, BsFillPencilFill, BsCheckLg } from "react-icons/bs";
 
 const ListaAlunos = () => {
   return (
@@ -12,10 +13,13 @@ const ListaAlunos = () => {
                     <p className="paragraph-college">UEFS:</p>
                 </li>
                 <li className="li-student">
-                    <p className="paragraph-student">João Pedro</p>
+                    <div className="paragraph-area">
+                        <p className="paragraph-student">João Pedro</p>
+                    </div>
                     <div className="list-buttons">
-                        <button className="button-ready">Liberado</button>
-                        <button className="button-delete">Excluir</button>
+                        <button className="button-ready" ><BsCheckLg /></button>
+                        <button className="button-edit"><BsFillPencilFill /></button>
+                        <button className="button-delete"><BsTrash3Fill /></button>
                     </div>
                 </li>
             </ul>
@@ -26,22 +30,25 @@ const ListaAlunos = () => {
                 <li className="li-student">
                     <p className="paragraph-student">Maria Eduarda</p>
                     <div className="list-buttons">
-                        <button className="button-ready">Liberado</button>
-                        <button className="button-delete">Excluir</button>
+                    <button className="button-ready" ><BsCheckLg /></button>
+                        <button className="button-edit"><BsFillPencilFill /></button>
+                        <button className="button-delete"><BsTrash3Fill /></button>
                     </div>  
                 </li>
                 <li className="li-student">
                     <p className="paragraph-student">Pedro</p>
                     <div className="list-buttons">
-                        <button className="button-ready">Liberado</button>
-                        <button className="button-delete">Excluir</button>
+                        <button className="button-ready" ><BsCheckLg /></button>
+                        <button className="button-edit"><BsFillPencilFill /></button>
+                        <button className="button-delete"><BsTrash3Fill /></button>
                     </div>  
                 </li>
                 <li className="li-student">
                     <p className="paragraph-student">Jonathas</p>
                     <div className="list-buttons">
-                        <button className="button-ready">Liberado</button>
-                        <button className="button-delete">Excluir</button>
+                        <button className="button-ready" ><BsCheckLg /></button>
+                        <button className="button-edit"><BsFillPencilFill /></button>
+                        <button className="button-delete"><BsTrash3Fill /></button>
                     </div>  
                 </li>
             </ul>
