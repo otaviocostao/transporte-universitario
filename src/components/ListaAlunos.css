@@ -1,0 +1,199 @@
+.container-lista-alunos{
+    width: 60%;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.date-area{
+    width: 45%;
+    display: flex;
+    justify-content: start;
+}
+
+.lista-alunos{
+    margin: 0;
+    width: 45%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    padding: 20px;
+    border-radius: 10px;
+    background-color: #292929;
+}
+
+.ul-lista-alunos{
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.paragraph-college{
+    font-size: 14pt;
+    font-weight: 600;
+    
+}
+
+.li-student{
+    display: flex;
+    justify-content: space-between;
+    border-bottom: #696969 1px solid;
+
+}
+
+.li-college{
+    display: flex;
+}
+
+.paragraph-student{}
+
+.list-buttons{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.button-ready {
+    border-radius: 8px;
+    border: 1px solid transparent;
+    padding: 5px;
+    font-size: 12pt;
+    font-family: inherit;
+    background-color: #83c25f;
+    cursor: pointer;
+    margin-left: 10px;
+  }
+  .button-ready:hover {
+    background-color: #76ad56;
+    border-color: #a1e879;
+  }
+
+
+.button-delete {
+    border-radius: 8px;
+    border: 1px solid transparent;
+    padding: 5px;
+    font-size: 12pt;
+    font-family: inherit;
+    background-color: #e95858;
+    cursor: pointer;
+    margin-left: 10px;
+  }
+  .button-delete:hover {
+    background-color: #c94e4e;
+    border-color: #e87979;
+  }
+
+  .container-lista-alunos {
+    width: 60%;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+/* Ajusta a largura e centraliza a data */
+.date-area {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+/* Ajusta o tamanho da lista para telas menores */
+.lista-alunos {
+    width: 45%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    padding: 20px;
+    border-radius: 10px;
+    background-color: #292929;
+}
+
+/* Faz os itens da lista ocuparem o espaço corretamente */
+.li-student {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: #696969 1px solid;
+    padding: 10px;
+    flex-wrap: wrap; /* Evita que o botão ultrapasse a linha */
+}
+
+.list-buttons {
+    display: flex;
+    gap: 10px; /* Adiciona espaço entre os botões */
+    flex-wrap: wrap;
+}
+
+/* Deixa os botões responsivos */
+.button-ready, .button-delete {
+    padding: 8px 12px;
+    font-size: 12pt;
+}
+
+/* Ajustes para telas menores */
+@media screen and (max-width: 1024px) {
+    .container-lista-alunos {
+        width: 90%;
+    }
+
+    .lista-alunos {
+        width: 80%;
+    }
+
+    .li-student {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .list-buttons {
+        margin-top: 5px;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .container-lista-alunos {
+        width: 100%;
+        padding: 10px;
+    }
+
+    .date-area {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .lista-alunos {
+        width: 90%;
+        padding: 15px;
+    }
+
+    .li-student {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .list-buttons {
+        width: 100%;
+        justify-content: space-between;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .container-lista-alunos {
+        width: 100%;
+        padding: 5px;
+    }
+
+    .lista-alunos {
+        width: 95%;
+    }
+
+    .li-student {
+        flex-direction: column;
+    }
+
+}
