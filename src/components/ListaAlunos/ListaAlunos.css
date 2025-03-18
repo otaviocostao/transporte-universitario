@@ -1,20 +1,15 @@
 .container-lista-alunos{
-    width: 60%;
+    width: 30vw;
     height: auto;
     display: flex;
     justify-content: center;
     align-items: center;
-    flex-direction: column;
 }
 
-.date-area{
-    width: 100%;
-    display: flex;
-    justify-content: center;
-}
+
 
 .lista-alunos{
-    width: 45%;
+    width: 90%;
     display: flex;
     justify-content: center;
     flex-direction: column;
@@ -22,7 +17,6 @@
     border-radius: 10px;
     background-color: #ffff;
     margin: 0;
-    width: 45%;
     box-shadow: 0 0 15px rgba(0, 0, 0, 0.05);
 }
 
@@ -41,6 +35,7 @@
 
 .paragraph-college{
     font-size: 14pt;
+    
     font-weight: 700;
     color: #393939;
 }
@@ -128,14 +123,6 @@
     border-color: #e87979;
   }
 
-  .container-lista-alunos {
-    width: 60%;
-    height: auto;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-}
 
 
 /* Deixa os botões responsivos */
@@ -167,13 +154,9 @@
 @media screen and (max-width: 768px) {
     .container-lista-alunos {
         width: 100%;
-        padding: 10px;
+
     }
 
-    .date-area {
-        width: 100%;
-        justify-content: center;
-    }
 
     .lista-alunos {
         width: 80%;
@@ -194,7 +177,7 @@
 @media screen and (max-width: 480px) {
     .container-lista-alunos {
         width: 100%;
-        padding: 5px;
+        
     }
 
     .lista-alunos {

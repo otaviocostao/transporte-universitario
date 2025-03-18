@@ -1,0 +1,43 @@
+.inicio-container {
+    width: 100vw;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    min-height: 100vh; 
+    margin: 0;
+    padding: 0;
+}
+
+.area-bar-content{
+    width: 100vw;
+    display: flex;
+    flex-direction: row;
+}
+
+.inicio-content{
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: start;
+}
+
+
+/* Ajustes para telas menores */
+@media screen and (max-width: 1024px) {
+    
+}
+
+@media screen and (max-width: 768px) {
+    
+}
+
+@media screen and (max-width: 480px) {
+   .inicio-content{
+        width: 95vw ;
+   }
+}
+
+@media screen and (max-width: 390px) {
+   
+}
