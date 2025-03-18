@@ -1,0 +1,65 @@
+.add-button-area{
+    width: 450px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.date-area{
+    padding: 0;
+    width: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    color: #393939;
+    font-weight:  bold;
+    font-size: 12pt;
+
+}
+
+.paragraph-date{
+    margin-right: 4px;
+}
+
+
+.add-button {
+    border-radius: 8px;
+    width: 100px;
+    height: 40px;
+    padding: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid transparent;
+    font-size: 12pt;
+    font-family: inherit;
+    background-color:  #4a6cf7;;
+    cursor: pointer;
+  }
+  .add-button:hover {
+    background-color:  #405ed9;;
+  }
+
+  
+/* Ajustes para telas menores */
+@media screen and (max-width: 1024px) {
+    
+}
+
+@media screen and (max-width: 768px) {
+    .add-button-area{
+        width: 600px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .add-button-area{
+        width: 370px;
+    }
+}
+
+@media screen and (max-width: 390px) {
+    .add-button-area{
+        width: 360px;
+    }
+}

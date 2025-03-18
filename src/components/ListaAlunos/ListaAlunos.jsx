@@ -4,9 +4,7 @@ import { BsTrash3Fill, BsFillPencilFill, BsCheckLg } from "react-icons/bs";
 const ListaAlunos = () => {
   return (
     <div className="container-lista-alunos">
-        <div className="date-area">
-            <h2>Lista do dia: </h2>
-        </div>
+        
         <div className="lista-alunos">
             <ul className="ul-lista-alunos">
                 <li className="li-college">
