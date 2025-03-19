@@ -19,7 +19,7 @@ const ListaAlunos = () => {
     };
 
     const handleConfirmDelete = () => {
-        setAlunos(alunos.filter((aluno) => aluno.id !== alunoToDelete));
+        setAlunos(alunos.filter((a) => a.id !== alunoToDelete.id)); // Filtra pelo ID
         setShowModal(false);
         setAlunoToDelete(null);
     };
