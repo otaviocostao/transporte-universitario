@@ -1,5 +1,6 @@
 .add-button-area{
     width: 450px;
+    padding-top: 20px;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -33,11 +34,11 @@
     border: 1px solid transparent;
     font-size: 12pt;
     font-family: inherit;
-    background-color:  #4a6cf7;;
+    background-color:  #4a6cf7;
     cursor: pointer;
   }
   .add-button:hover {
-    background-color:  #405ed9;;
+    background-color:  #405ed9;
   }
 
   

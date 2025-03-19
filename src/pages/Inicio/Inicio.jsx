@@ -1,6 +1,5 @@
 import React from 'react';
 import BarraNavegacao from '../../components/BarraNavegacao/BarraNavegacao'; 
-import BarraLateral from '../../components/BarraLateral/BarraLateral';
 import AddButton from '../../components/AddButton/AddButton';
 import ListaAlunos from '../../components/ListaAlunos/ListaAlunos';
 import './Inicio.css';
