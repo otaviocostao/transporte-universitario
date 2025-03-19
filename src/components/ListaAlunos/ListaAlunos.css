@@ -17,7 +17,7 @@
     border-radius: 10px;
     background-color: #ffff;
     margin: 0;
-    box-shadow: 0 0 15px rgba(0, 0, 0, 0.05);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
 }
 
 .ul-lista-alunos{
@@ -93,7 +93,7 @@
     border: 1px solid transparent;
     font-size: 12pt;
     font-family: inherit;
-    background-color: #e95858;
+    background-color: #d9534f;
     cursor: pointer;
 
   }
