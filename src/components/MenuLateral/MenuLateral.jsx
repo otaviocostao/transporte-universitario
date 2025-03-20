@@ -9,7 +9,7 @@ const MenuLateral = ({isOpen, onClose}) => {
 
   return (
     <div className='menu-area-overlay' onClick={onClose}>
-      <div className='menu-content'>
+      <div className='menu-content' onClick={(e) => e.stopPropagation()}>
         <div className='back-button-area'>
             <button href="" className='back-button' onClick={onClose}>
               <BsArrowLeft />
