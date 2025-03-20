@@ -1,0 +1,114 @@
+/* Variáveis CSS (Opcional, mas recomendado) */
+:root {
+    --cor-primaria: #4a6cf7;
+    --cor-primaria-hover: #405ed9;
+    --cor-secundaria: #ccc;
+    --cor-secundaria-hover: #bbb;
+    --cor-texto: #393939;
+    --cor-fundo: #fff;
+    --borda: 1px solid #e0e0e0;
+    --borda-radius: 10px;
+    --espacamento-padrao: 10px;
+    --sombra: 0 2px 10px rgba(0, 0, 0, 0.2);
+  }
+  
+  /* Overlay */
+  .area-add-student-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000; /* Garante que fique acima de tudo */
+  }
+  
+  /* Conteúdo do Modal */
+  .add-student-content {
+    background-color: var(--cor-fundo);
+    padding: 15px;
+    border-radius: var(--borda-radius);
+    box-shadow: var(--sombra);
+    max-width: 80%; /* Largura máxima responsiva */
+    max-height: 80%;  /* Altura máxima responsiva */
+    overflow: auto; /* Adiciona scroll se o conteúdo for maior */
+    width: 450px; /* Largura inicial (ajuste conforme necessário) */
+      
+  }
+  
+  .h3-form-add-student {
+    color: var(--cor-texto);
+    margin-bottom: 1rem; /* Espaçamento abaixo do título */
+  }
+  
+  /* Formulário */
+  .form-adcionar-aluno { /* Essa classe não parece estar sendo usada no seu JSX, então pode ser removida */
+    /* width: 100%; Removido, pois o form já está dentro de um container com largura definida*/
+    display: flex;
+    flex-direction: column;
+    gap: var(--espacamento-padrao); /* Espaçamento entre os elementos do formulário */
+  }
+  
+  /* Labels */
+  .text-area,
+  .select-area {
+    display: flex; /* Flexbox para alinhar label e input/select */
+    flex-direction: row; /* Empilha label e input/select */
+    gap: 0.5rem;  /*Espaçamento entre o label e o input*/
+    color: var(--cor-texto);
+  }
+  
+  /* Inputs e Selects */
+  .text-area > input,
+  .select-area > select {
+    padding: var(--espacamento-padrao);
+    border: var(--borda);
+    background-color: var(--cor-fundo);
+    color: var(--cor-texto);
+    border-radius: var(--borda-radius);
+    width: 80%; /* Ocupa toda a largura do container pai */
+    box-sizing: border-box; /* Inclui padding e border na largura total */
+    margin-bottom: 8px;
+  }
+
+  .select-area>select{
+    width: 30%;
+  }
+  
+  /* Botões */
+  .area-add-student-buttons {
+    display: flex;
+    justify-content: flex-end; /* Alinha os botões à direita */
+    gap: var(--espacamento-padrao); /* Espaçamento entre os botões */
+    margin-top: var(--espacamento-padrao);
+  }
+  
+  .button-add-student,
+  .button-cancel-add-student {
+    padding: var(--espacamento-padrao) calc(var(--espacamento-padrao) * 1.5); /* Aumenta o padding horizontal */
+    border: none;
+    border-radius: var(--borda-radius);
+    cursor: pointer;
+    transition: background-color 0.2s ease; /* Transição suave no hover */
+  }
+  
+  .button-add-student {
+    background-color: var(--cor-primaria);
+    color: white;
+  }
+  
+  .button-add-student:hover {
+    background-color: var(--cor-primaria-hover);
+  }
+  
+  .button-cancel-add-student {
+    background-color: var(--cor-secundaria);
+    color: var(--cor-texto);
+  }
+  
+  .button-cancel-add-student:hover {
+    background-color: var(--cor-secundaria-hover);
+  }
