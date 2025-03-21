@@ -44,7 +44,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 10px;
+    padding: 4px;
     flex-wrap: wrap;
     border-bottom: #99999986 1px solid;
     color: #292929;
@@ -190,7 +190,7 @@
     }
     
     .list-buttons {
-        width: 40%;
+        width: 50%;
         justify-content: space-between;
     }
 }
@@ -209,9 +209,9 @@
         display: flex;
         flex-direction: row;
     }
-    
+
     .list-buttons {
-        width: 45%;
+        width: 50%;
         justify-content: space-between;
     }
 }
