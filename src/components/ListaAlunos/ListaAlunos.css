@@ -78,7 +78,6 @@
   }
   .button-ready:hover {
     background-color: #76ad56;
-    border-color: #a1e879;
   }
 
 
@@ -99,7 +98,6 @@
   }
   .button-delete:hover {
     background-color: #c94e4e;
-    border-color: #e87979;
   }
 
 
@@ -120,7 +118,6 @@
   }
   .button-edit:hover {
     background-color: #e0b048;
-    border-color: #e87979;
   }
 
 
