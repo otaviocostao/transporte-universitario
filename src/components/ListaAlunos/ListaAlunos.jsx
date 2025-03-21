@@ -2,14 +2,15 @@ import { useState } from "react";
 import "./ListaAlunos.css";
 import { BsTrash3Fill, BsFillPencilFill, BsCheckLg } from "react-icons/bs";
 import ModalDelete from "../ModalDelete/ModalDelete";
+import EditarAluno from "../EditarAluno/EditarAluno";
 
 const ListaAlunos = () => {
     const [alunos, setAlunos] = useState([
-        { id: 1, nome: 'João', faculdade: 'UEFS', liberado: true },
-        { id: 2, nome: 'Maria Eduarda', faculdade: 'UEFS', liberado: false },
-        { id: 3, nome: 'José', faculdade: 'UEFS', liberado: false },
-        { id: 4, nome: 'Ana', faculdade: 'UNIFAN', liberado: true },
-        { id: 5, nome: 'Pedro', faculdade: 'UNIFAN', liberado: false }, // Exemplo: Pedro inicialmente NÃO liberado
+        { id: 1, nome: 'João', faculdade: 'UEFS', viagem: "ida e volta", liberado: true },
+        { id: 2, nome: 'Maria Eduarda', faculdade: 'UEFS', viagem: "ida e volta", liberado: false },
+        { id: 3, nome: 'José', faculdade: 'UEFS', viagem: "ida e volta", liberado: false },
+        { id: 4, nome: 'Ana', faculdade: 'UNIFAN', viagem: "ida e volta", liberado: true },
+        { id: 5, nome: 'Pedro', faculdade: 'UNIFAN', viagem: "ida e volta", liberado: false },
     ]);
 
     const [showModal, setShowModal] = useState(false);
@@ -31,13 +32,35 @@ const ListaAlunos = () => {
         setAlunoToDelete(null);
     };
 
-    const handleReadyClick = (alunoId) => { // Recebe o ID do aluno, não o objeto inteiro
+    const handleReadyClick = (alunoId) => {
       setAlunos(prevAlunos =>
         prevAlunos.map(aluno =>
-          aluno.id === alunoId ? { ...aluno, liberado: !aluno.liberado } : aluno // Inverte o estado de liberado
+          aluno.id === alunoId ? { ...aluno, liberado: !aluno.liberado } : aluno
         )
       );
     };
+
+    const [showEditModal, setShowEditModal] = useState(false);
+    const [alunoEdit, setAlunoEdit] = useState(null);
+    const handleEditClick = (aluno) => {
+        setAlunoEdit(aluno);
+        setShowEditModal(true);
+    }
+
+    const handleCloseEditModal = () => {
+        setAlunoEdit(null);
+        setShowEditModal(false);
+    }
+
+    const handleConfirmEdit = (updatedAluno) => {
+        setAlunos(prevAlunos =>
+            prevAlunos.map(aluno =>
+                aluno.id === updatedAluno ? {...aluno, ...updatedAluno} : aluno
+            )
+        );
+        setShowEditModal(false);
+        setAlunoEdit(null);
+    }
 
     return (
         <div className="container-lista-alunos">
@@ -57,7 +80,7 @@ const ListaAlunos = () => {
                                 <button className="button-ready" onClick={() => handleReadyClick(aluno.id)}>
                                     <BsCheckLg />
                                 </button>
-                                <button className="button-edit"><BsFillPencilFill /></button>
+                                <button className="button-edit" onClick={() => handleEditClick(aluno)}><BsFillPencilFill /></button>
                                 <button
                                     className="button-delete"
                                     onClick={() => handleDeleteClick(aluno)}
@@ -81,7 +104,7 @@ const ListaAlunos = () => {
                                 </p>
                             </div>
                             <div className="list-buttons">
-                                 {/* Passa o ID do aluno para handleReadyClick */}
+                                
                                 <button className="button-ready" onClick={() => handleReadyClick(aluno.id)}>
                                     <BsCheckLg />
                                 </button>
@@ -109,6 +132,15 @@ const ListaAlunos = () => {
                         Tem certeza de que deseja remover {alunoToDelete ? alunoToDelete.nome : ''} da lista?
                     </p>
                 </ModalDelete>
+            )}
+
+            {showEditModal && (
+                <EditarAluno 
+                    isOpen={showEditModal}
+                    onClose={handleCloseEditModal}
+                    onConfirm={handleConfirmEdit}
+                    aluno={alunoEdit}
+                />
             )}
         </div>
     );

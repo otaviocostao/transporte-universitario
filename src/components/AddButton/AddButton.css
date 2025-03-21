@@ -8,7 +8,7 @@
 
 .date-area{
     padding: 0;
-    width: 50%;
+    width: 60%;
     display: flex;
     align-items: center;
     justify-content: start;
@@ -55,12 +55,17 @@
 
 @media screen and (max-width: 480px) {
     .add-button-area{
-        width: 370px;
+        width: 90%;
     }
 }
 
 @media screen and (max-width: 390px) {
     .add-button-area{
-        width: 360px;
+        width: 90%;
+    }
+
+    .date-area{
+        width: 60%;
+        margin-left:5px;
     }
 }
