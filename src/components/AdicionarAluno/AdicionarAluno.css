@@ -61,7 +61,7 @@
     color: var(--cor-texto);
   }
   
-  /* Inputs e Selects */
+  
   .text-area > input,
   .select-area > select {
     padding: var(--espacamento-padrao);
@@ -90,7 +90,7 @@
   .button-cancel-add-student {
     padding: var(--espacamento-padrao) calc(var(--espacamento-padrao) * 1.5); /* Aumenta o padding horizontal */
     border: none;
-    border-radius: var(--borda-radius);
+    border-radius: 4px;
     cursor: pointer;
     transition: background-color 0.2s ease; /* Transição suave no hover */
   }
@@ -105,10 +105,10 @@
   }
   
   .button-cancel-add-student {
-    background-color: var(--cor-secundaria);
-    color: var(--cor-texto);
+    background-color: #818181;
+    color: #ffff;
   }
   
   .button-cancel-add-student:hover {
-    background-color: var(--cor-secundaria-hover);
+    background-color: #777777;
   }

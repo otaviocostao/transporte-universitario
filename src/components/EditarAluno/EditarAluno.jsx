@@ -1,10 +1,11 @@
-import React, { useState, useEffect } from 'react'; // Importe useEffect
+import React, { useState, useEffect } from 'react';
 import './EditarAluno.css';
 
 const EditarAluno = ({ isOpen, onClose, onConfirm, aluno }) => {
   const [nome, setNome] = useState('');
   const [faculdade, setFaculdade] = useState('uefs');
   const [viagem, setViagem] = useState('bate-volta');
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     if (aluno) {
@@ -14,15 +15,23 @@ const EditarAluno = ({ isOpen, onClose, onConfirm, aluno }) => {
     }
   }, [aluno]);
 
-
   if (!isOpen) {
     return null;
   }
 
   const handleSubmit = (event) => {
     event.preventDefault();
-
-    onConfirm({ id: aluno.id, nome, faculdade, viagem });
+    setLoading(true);
+    
+    const updatedAluno = {
+      id: aluno.id,
+      nome,
+      faculdade,
+      viagem
+    };
+    
+    onConfirm(updatedAluno);
+    setLoading(false);
   };
 
   const handleOverlayClick = (e) => {
@@ -43,6 +52,7 @@ const EditarAluno = ({ isOpen, onClose, onConfirm, aluno }) => {
               id='name-aluno'
               value={nome}
               onChange={(e) => setNome(e.target.value)}
+              disabled={loading}
             />
           </label>
           <label className='select-area'>
@@ -52,6 +62,7 @@ const EditarAluno = ({ isOpen, onClose, onConfirm, aluno }) => {
               id="faculdade-aluno"
               value={faculdade}
               onChange={(e) => setFaculdade(e.target.value)}
+              disabled={loading}
             >
               <option value="uefs">UEFS</option>
               <option value="pitagoras">Pitagoras</option>
@@ -67,6 +78,7 @@ const EditarAluno = ({ isOpen, onClose, onConfirm, aluno }) => {
               id="viagem"
               value={viagem}
               onChange={(e) => setViagem(e.target.value)}
+              disabled={loading}
             >
               <option value="bate-volta">Ida e volta</option>
               <option value="ida">Ida</option>
@@ -74,8 +86,21 @@ const EditarAluno = ({ isOpen, onClose, onConfirm, aluno }) => {
             </select>
           </label>
           <div className='area-edit-student-buttons'>
-            <button type="submit" className='button-edit-student' onClick={onConfirm}>Salvar</button>
-            <button type="button" className='button-cancel-edit-student' onClick={onClose}>Cancelar</button>
+            <button 
+              type="submit" 
+              className='button-edit-student'
+              disabled={loading}
+            >
+              {loading ? "Salvando..." : "Salvar"}
+            </button>
+            <button 
+              type="button" 
+              className='button-cancel-edit-student' 
+              onClick={onClose}
+              disabled={loading}
+            >
+              Cancelar
+            </button>
           </div>
         </form>
       </div>
