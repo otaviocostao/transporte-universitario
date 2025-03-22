@@ -1,5 +1,6 @@
 import './MenuLateral.css'
-import { BsArrowLeft, BsBoxArrowRight } from "react-icons/bs";
+import { BsArrowLeft, BsBoxArrowRight, BsClockHistory, BsTicket, BsCashStack, BsHouse } from "react-icons/bs";
+
 
 const MenuLateral = ({ isOpen, onClose, onLogout }) => {
   return (
@@ -15,22 +16,26 @@ const MenuLateral = ({ isOpen, onClose, onLogout }) => {
         </div>
         <div className='menu-buttons-area'>
           <div className='area-sidebar-button'>
+            <BsHouse className='sb-button-icon'/>
             <a href="/" className='menu-sidebar-button'>Início</a>
           </div>
           <div className='area-sidebar-button'>
+            <BsClockHistory className='sb-button-icon'/>
             <a href="/historico" className='menu-sidebar-button'>Histórico</a>
           </div>
           <div className='area-sidebar-button'>
+            <BsTicket className='sb-button-icon'/>
             <a href="/passagens" className='menu-sidebar-button'>Passagens</a>
           </div>
           <div className='area-sidebar-button'>
+            <BsCashStack className='sb-button-icon'/>
             <a href="/pagamentos" className='menu-sidebar-button'>Pagamentos</a>
           </div>
         </div>
         <div className='sidebar-footer'>
           <div className='area-sidebar-button-logout-area'>
             <a className='menu-sidebar-button-logout' onClick={onLogout}>
-              <BsBoxArrowRight className="logout-icon" />
+              <BsBoxArrowRight className="sb-button-icon" />
               <span className="logout-text">Sair</span>
             </a>
           </div>

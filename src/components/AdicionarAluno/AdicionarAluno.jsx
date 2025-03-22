@@ -59,7 +59,7 @@ const AdicionarAluno = ({ isOpen, onClose, selectedDate }) => {
         {error && <div className="error-message">{error}</div>}
         
         <form onSubmit={handleSubmit}>
-          <label className='text-area'>
+          <label className='add-text-area'>
             <span>Nome: </span>
             <input
               type="text"
@@ -69,8 +69,8 @@ const AdicionarAluno = ({ isOpen, onClose, selectedDate }) => {
               disabled={loading}
             />
           </label>
-          <label className='select-area'>
-            <span>Faculdade:</span>
+          <label className='add-select-area'>
+            <span>Destino:</span>
             <select
               name="faculdade-aluno"
               id="faculdade-aluno"
@@ -85,7 +85,7 @@ const AdicionarAluno = ({ isOpen, onClose, selectedDate }) => {
               <option value="unef">UNEF</option>
             </select>
           </label>
-          <label className='select-area'>
+          <label className='add-select-area'>
             <span>Viagem:</span>
             <select
               name="viagem"

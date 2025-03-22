@@ -1,40 +1,48 @@
-import { useState } from 'react'
-import './AddButton.css'
+import { useState, useEffect } from 'react';
+import './AddButton.css';
 import AdicionarAluno from '../AdicionarAluno/AdicionarAluno';
 
 const AddButton = ({ onDateChange, selectedDate }) => {
   const [showAddForm, setShowAddForm] = useState(false);
-  
+  const [currentDate, setCurrentDate] = useState(selectedDate || new Date());
+
+  useEffect(() => {
+    if (!selectedDate) {
+      const today = new Date();
+      setCurrentDate(today);
+      if (onDateChange) {
+        onDateChange(today);
+      }
+    }
+  }, [selectedDate, onDateChange]);
+
   const handleClickAddForm = () => {
     setShowAddForm(true);
-  }
+  };
 
   const handleCloseAddForm = () => {
     setShowAddForm(false);
-  }
-  
+  };
+
   const handleDateChange = (e) => {
     const newDate = new Date(e.target.value);
+    setCurrentDate(newDate);
     if (onDateChange) {
       onDateChange(newDate);
     }
   };
-  
+
   const formatDate = (date) => {
     return date.toLocaleDateString('pt-BR');
-  };
-  
-  const getISODate = (date) => {
-    return date.toISOString().split('T')[0];
   };
 
   return (
     <div className='add-button-area'>
       <div className="date-area">
         <p className='paragraph-date'>Lista do dia: </p>
-        <span>{formatDate(selectedDate)}</span>
+        <span>{formatDate(currentDate)}</span>
       </div>
-      <button className='add-button' onClick={() => handleClickAddForm()}>
+      <button className='add-button' onClick={handleClickAddForm}>
         Adicionar
       </button>
 
@@ -42,11 +50,11 @@ const AddButton = ({ onDateChange, selectedDate }) => {
         <AdicionarAluno 
           isOpen={showAddForm}
           onClose={handleCloseAddForm}
-          selectedDate={selectedDate}
+          selectedDate={currentDate}
         />
       )}
     </div>
-  )
-}
+  );
+};
 
 export default AddButton;
