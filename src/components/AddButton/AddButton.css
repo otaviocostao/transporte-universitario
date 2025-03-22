@@ -24,7 +24,7 @@
 
 
 .add-button {
-    border-radius: 8px;
+    border-radius: 5px;
     width: 100px;
     height: 40px;
     padding: 8px;
@@ -36,6 +36,8 @@
     font-family: inherit;
     background-color:  #4a6cf7;
     cursor: pointer;
+    color: #ffff;
+    font-weight: 400;
   }
   .add-button:hover {
     background-color:  #405ed9;

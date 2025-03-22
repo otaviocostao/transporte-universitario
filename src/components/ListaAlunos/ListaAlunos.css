@@ -62,7 +62,7 @@
 }
 
 .button-ready {
-    border-radius: 8px;
+    border-radius: 5px;
     width: 40px;
     height: 40px;
     padding: 8px;
@@ -70,9 +70,10 @@
     justify-content: center;
     align-items: center;
     border: 1px solid transparent;
-    font-size: 12pt;
+    font-size: 14pt;
     font-family: inherit;
     background-color: #83c25f;
+    color: #ffff;
     cursor: pointer;
 
   }
@@ -80,6 +81,27 @@
     background-color: #76ad56;
   }
 
+  
+.button-edit {
+      width: 40px;
+      height: 40px;
+      padding: 8px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-radius: 5px;
+      border: 1px solid transparent;
+      font-size: 14pt;
+      font-family: inherit;
+      background-color: #e9bb58;
+      color: #ffff;
+      cursor: pointer;
+      
+}
+
+.button-edit:hover {
+      background-color: #e0b048;
+    }
 
 .button-delete {
     width: 40px;
@@ -88,11 +110,12 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    border-radius: 8px;
+    border-radius: 5px;
     border: 1px solid transparent;
-    font-size: 12pt;
+    font-size: 14pt;
     font-family: inherit;
     background-color: #d9534f;
+    color: #ffff;
     cursor: pointer;
 
   }
@@ -100,25 +123,6 @@
     background-color: #c94e4e;
   }
 
-
-.button-edit {
-    width: 40px;
-    height: 40px;
-    padding: 8px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 8px;
-    border: 1px solid transparent;
-    font-size: 12pt;
-    font-family: inherit;
-    background-color: #e9bb58;
-    cursor: pointer;
-    
-  }
-  .button-edit:hover {
-    background-color: #e0b048;
-  }
 
 
 
