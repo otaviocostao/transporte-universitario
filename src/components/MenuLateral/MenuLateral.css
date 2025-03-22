@@ -84,6 +84,14 @@
     background-color: #d5ddfd;
 }
 
+.sb-button-icon{
+    width: 40px;
+    font-size: 14pt;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 .menu-buttons-area{
     width: 100%;
     height: 60%;
@@ -136,12 +144,7 @@
     
 }
 
-.logout-icon{
-    width: 30px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
+
 
 
 @media screen and (max-width:1024px) {

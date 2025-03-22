@@ -23,7 +23,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    z-index: 1000; /* Garante que fique acima de tudo */
+    z-index: 1000;
   }
   
   /* Conteúdo do Modal */
@@ -32,67 +32,62 @@
     padding: 15px;
     border-radius: var(--borda-radius);
     box-shadow: var(--sombra);
-    max-width: 80%; /* Largura máxima responsiva */
-    max-height: 80%;  /* Altura máxima responsiva */
-    overflow: auto; /* Adiciona scroll se o conteúdo for maior */
-    width: 450px; /* Largura inicial (ajuste conforme necessário) */
+    max-width: 80%; 
+    max-height: 80%;  
+    overflow: auto; 
+    width: 450px; 
       
   }
   
   .h3-form-add-student {
     color: var(--cor-texto);
-    margin-bottom: 1rem; /* Espaçamento abaixo do título */
-  }
-  
-  /* Formulário */
-  .form-adcionar-aluno { /* Essa classe não parece estar sendo usada no seu JSX, então pode ser removida */
-    /* width: 100%; Removido, pois o form já está dentro de um container com largura definida*/
-    display: flex;
-    flex-direction: column;
-    gap: var(--espacamento-padrao); /* Espaçamento entre os elementos do formulário */
+    margin-bottom: 1rem; 
   }
   
   /* Labels */
-  .text-area,
-  .select-area {
-    display: flex; /* Flexbox para alinhar label e input/select */
-    flex-direction: row; /* Empilha label e input/select */
-    gap: 0.5rem;  /*Espaçamento entre o label e o input*/
+  .add-text-area,
+  .add-select-area {
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    flex-direction: row;
+    gap: 0.5rem; 
     color: var(--cor-texto);
+    margin-bottom: 8px;
   }
   
   
-  .text-area > input,
-  .select-area > select {
+  .add-text-area > input,
+  .add-select-area > select {
     padding: var(--espacamento-padrao);
     border: var(--borda);
     background-color: var(--cor-fundo);
     color: var(--cor-texto);
     border-radius: var(--borda-radius);
-    width: 80%; /* Ocupa toda a largura do container pai */
-    box-sizing: border-box; /* Inclui padding e border na largura total */
-    margin-bottom: 8px;
+    width: 80%; 
+    box-sizing: border-box;
+    
   }
 
-  .select-area>select{
+  .add-select-area>select{
     width: 30%;
   }
   
   /* Botões */
   .area-add-student-buttons {
     display: flex;
-    justify-content: flex-end; /* Alinha os botões à direita */
-    gap: var(--espacamento-padrao); /* Espaçamento entre os botões */
+    justify-content: flex-end; 
+    gap: var(--espacamento-padrao); 
     margin-top: var(--espacamento-padrao);
   }
   
   .button-add-student,
   .button-cancel-add-student {
-    padding: var(--espacamento-padrao) calc(var(--espacamento-padrao) * 1.5); /* Aumenta o padding horizontal */
+    padding: var(--espacamento-padrao) calc(var(--espacamento-padrao) * 1.5);
     border: none;
     border-radius: 4px;
     cursor: pointer;
-    transition: background-color 0.2s ease; /* Transição suave no hover */
+    transition: background-color 0.2s ease;
   }
   
   .button-add-student {

@@ -45,7 +45,7 @@ const EditarAluno = ({ isOpen, onClose, onConfirm, aluno }) => {
       <div className='edit-student-content' onClick={(e) => e.stopPropagation()}>
         <h3 className='h3-form-edit-student'>Editar</h3>
         <form onSubmit={handleSubmit}>
-          <label className='text-area'>
+          <label className='edit-text-area'>
             <span>Nome: </span>
             <input
               type="text"
@@ -55,7 +55,7 @@ const EditarAluno = ({ isOpen, onClose, onConfirm, aluno }) => {
               disabled={loading}
             />
           </label>
-          <label className='select-area'>
+          <label className='edit-select-area'>
             <span>Faculdade:</span>
             <select
               name="faculdade-aluno"
@@ -71,7 +71,7 @@ const EditarAluno = ({ isOpen, onClose, onConfirm, aluno }) => {
               <option value="unef">UNEF</option>
             </select>
           </label>
-          <label className='select-area'>
+          <label className='edit-select-area'>
             <span>Viagem:</span>
             <select
               name="viagem"

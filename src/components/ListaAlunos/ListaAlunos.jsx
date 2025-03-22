@@ -1,6 +1,6 @@
 import { useState } from "react";
 import "./ListaAlunos.css";
-import { BsTrash3Fill, BsFillPencilFill, BsCheckLg } from "react-icons/bs";
+import { BsTrash3Fill, BsPencilSquare, BsCheckSquare } from "react-icons/bs";
 import ModalDelete from "../ModalDelete/ModalDelete";
 import EditarAluno from "../EditarAluno/EditarAluno";
 import { deleteStudent, toggleStudentStatus, updateStudent } from "../../services/studentService";
@@ -98,7 +98,7 @@ const ListaAlunos = ({ students, loading, selectedDate }) => {
     <div className="container-lista-alunos">
       <div className="lista-alunos">
         {Object.keys(groupedStudents).length === 0 ? (
-          <p className="no-students-message">Nenhum aluno cadastrado para esta data.</p>
+          <p className="no-students-message">Nenhum estudante cadastrado para esta data.</p>
         ) : (
           Object.entries(groupedStudents).map(([faculty, facultyStudents]) => (
             <ul className="ul-lista-alunos" key={faculty}>
@@ -109,7 +109,7 @@ const ListaAlunos = ({ students, loading, selectedDate }) => {
                 <li className="li-student" key={aluno.id}>
                   <div className="paragraph-area">
                     <p className="paragraph-student">
-                      {index + 1}. {aluno.nome} {aluno.liberado && "✅"}
+                      {index + 1}. {aluno.nome} {aluno.liberado && <div className="stats-liberado"><span>Liberado</span></div> }
                     </p>
                   </div>
                   <div className="list-buttons">
@@ -117,13 +117,13 @@ const ListaAlunos = ({ students, loading, selectedDate }) => {
                       className="button-ready" 
                       onClick={() => handleReadyClick(aluno.id)}
                     >
-                      <BsCheckLg />
+                      <BsCheckSquare />
                     </button>
                     <button 
                       className="button-edit" 
                       onClick={() => handleEditClick(aluno)}
                     >
-                      <BsFillPencilFill />
+                      <BsPencilSquare />
                     </button>
                     <button
                       className="button-delete"

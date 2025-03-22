@@ -1,6 +1,6 @@
 .add-button-area{
-    width: 450px;
-    padding-top: 20px;
+    width: 28%;
+    padding: 20px;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -33,7 +33,6 @@
     align-items: center;
     border: 1px solid transparent;
     font-size: 12pt;
-    font-family: inherit;
     background-color:  #4a6cf7;
     cursor: pointer;
     color: #ffff;
@@ -46,7 +45,9 @@
   
 /* Ajustes para telas menores */
 @media screen and (max-width: 1024px) {
-    
+    .add-button-area{
+        width: 730px;
+    }
 }
 
 @media screen and (max-width: 768px) {

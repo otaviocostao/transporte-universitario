@@ -40,6 +40,17 @@
     color: #393939;
 }
 
+.paragraph-student{
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    color: #393939;
+    padding-inline: 5px;
+    padding-block: 3px;
+}
+
 .li-student{
     display: flex;
     justify-content: space-between;
@@ -54,6 +65,20 @@
     display: flex;
 }
 
+.stats-liberado{
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(62, 202, 93, 0.2);
+    color: #28a745;
+    font-size: 10pt;
+    border-radius: 13px;
+    margin-left: 5px;
+    padding-inline: 5px;
+    padding-block: 3px;
+}
+
 
 .list-buttons{
     display: flex;
@@ -61,7 +86,9 @@
     flex-wrap: wrap;
 }
 
-.button-ready {
+.button-ready,
+.button-edit,
+.button-delete {
     border-radius: 5px;
     width: 40px;
     height: 40px;
@@ -70,67 +97,37 @@
     justify-content: center;
     align-items: center;
     border: 1px solid transparent;
-    font-size: 14pt;
+    font-size: 16pt;
     font-family: inherit;
-    background-color: #83c25f;
-    color: #ffff;
+    background-color: transparent;
     cursor: pointer;
+  }
+
+.button-ready {
+    color: #83c25f;
 
   }
-  .button-ready:hover {
-    background-color: #76ad56;
-  }
+   
 
   
 .button-edit {
-      width: 40px;
-      height: 40px;
-      padding: 8px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      border-radius: 5px;
-      border: 1px solid transparent;
-      font-size: 14pt;
-      font-family: inherit;
-      background-color: #e9bb58;
-      color: #ffff;
-      cursor: pointer;
+      color: #e9bb58;
+
       
 }
 
-.button-edit:hover {
-      background-color: #e0b048;
-    }
 
 .button-delete {
-    width: 40px;
-    height: 40px;
-    padding: 8px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 5px;
-    border: 1px solid transparent;
-    font-size: 14pt;
-    font-family: inherit;
-    background-color: #d9534f;
-    color: #ffff;
-    cursor: pointer;
+    color: #d9534f;
 
   }
+
+  .button-ready:hover,
+  .button-edit:hover,
   .button-delete:hover {
-    background-color: #c94e4e;
+    background-color: #eef1fd;
   }
 
-
-
-
-/* Deixa os botões responsivos */
-.button-ready, .button-delete .button-edit {
-    padding: 8px 12px;
-    font-size: 12pt;
-}
 
 /* Ajustes para telas menores */
 @media screen and (max-width: 1024px) {
