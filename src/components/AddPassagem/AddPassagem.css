@@ -1,22 +1,19 @@
-/* AddPassagem.css */
-
 .content-adicionar-passagem {
     width: 90%;
     max-width: 800px;
-    height: auto; /*  height: auto; é o padrão, você pode omitir */
+    height: auto; 
     display: flex;
     align-items: center;
-    justify-content: space-between; /* Mantém o space-between */
-    flex-direction: row; /* Mantém o row */
+    justify-content: space-between;
+    flex-direction: row; 
     padding: 10px;
-    margin: 0 auto; /* Centraliza horizontalmente (se tiver max-width) */
-      /* margin-bottom: 15px;  Mova essa margem para o componente pai, se necessário*/
-  }
-  
+    margin: 0 auto; 
+    }
+
   .add-passagem-button {
       border-radius: 5px;
       padding: 8px 12px;
-      display: flex; /* Mantém o display flex, se você quer centralizar o texto */
+      display: flex; 
       justify-content: center;
       align-items: center;
       border: 1px solid transparent;
@@ -31,7 +28,6 @@
     background-color: #405ed9;
   }
   
-  /* Adiciona o CSS para o container do modal (CRUCIAL) */
   .modal-container {
     position: fixed;
     top: 0;
@@ -42,5 +38,5 @@
     justify-content: center;
     align-items: center;
     z-index: 1000;
-    background-color: rgba(0, 0, 0, 0.5); /* Fundo semi-transparente */
+    background-color: rgba(0, 0, 0, 0.5); 
   }

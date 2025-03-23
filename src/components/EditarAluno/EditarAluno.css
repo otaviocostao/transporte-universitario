@@ -1,16 +1,4 @@
-:root {
-    --cor-primaria: #4a6cf7;
-    --cor-primaria-hover: #405ed9;
-    --cor-secundaria: #818181;
-    --cor-secundaria-hover: #bbb;
-    --cor-texto: #393939;
-    --cor-fundo: #fff;
-    --borda: 1px solid #e0e0e0;
-    --borda-radius: 5px;
-    --espacamento-padrao: 10px;
-    --sombra: 0 2px 10px rgba(0, 0, 0, 0.2);
-  }
-  
+
   .area-edit-student-overlay {
     position: fixed;
     top: 0;
@@ -25,10 +13,10 @@
   }
   
   .edit-student-content {
-    background-color: var(--cor-fundo);
+    background-color: #fff;
     padding: 15px;
-    border-radius: var(--borda-radius);
-    box-shadow: var(--sombra);
+    border-radius: 5px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);;
     max-width: 80%;
     max-height: 80%;
     overflow: auto; 
@@ -37,7 +25,7 @@
   }
   
   .h3-form-edit-student {
-    color: var(--cor-texto);
+    color: #393939;
     margin-bottom: 1rem; 
   }
   
@@ -45,7 +33,7 @@
   .form-editar-aluno {
     display: flex;
     flex-direction: column;
-    gap: var(--espacamento-padrao); 
+    gap: 8px;
   }
   
 
@@ -56,38 +44,33 @@
     justify-content: start;
     flex-direction: row;
     gap: 0.5rem; 
-    color: var(--cor-texto);
+    color: #393939;
     margin-bottom: 8px;
   }
   
 
   .edit-text-area > input,
   .edit-select-area > select {
-    padding: var(--espacamento-padrao);
-    border: var(--borda);
-    background-color: var(--cor-fundo);
-    color: var(--cor-texto);
-    border-radius: var(--borda-radius);
-    width: 80%; 
+    padding: 8px;
+    border: 1px solid #e0e0e0;
+    background-color: #fff;
+    color: #393939;
+    border-radius: 5px;
+    width: 100%; 
     box-sizing: border-box;
     
   }
-
-  .edit-select-area>select{
-    width: 30%;
-  }
-  
   
   .area-edit-student-buttons {
     display: flex;
     justify-content: flex-end;
-    gap: var(--espacamento-padrao); 
-    margin-top: var(--espacamento-padrao);
+    gap: 8px;
+    margin-top: 8px;
   }
   
   .button-edit-student,
   .button-cancel-edit-student {
-    padding: var(--espacamento-padrao) calc(var(--espacamento-padrao) * 1.5); 
+    padding: 10px 15px;
     border: none;
     border-radius: 5px;
     cursor: pointer;
@@ -95,19 +78,19 @@
   }
   
   .button-edit-student {
-    background-color: var(--cor-primaria);
+    background-color: #4a6cf7;
     color: white;
   }
   
   .button-edit-student:hover {
-    background-color: var(--cor-primaria-hover);
+    background-color: #405ed9;
   }
   
   .button-cancel-edit-student {
-    background-color: var(--cor-secundaria);
+    background-color: #818181;
     color: #ffff;
   }
   
   .button-cancel-edit-student:hover {
-    background-color: var(--cor-secundaria-hover);
+    background-color: #777777;
   }

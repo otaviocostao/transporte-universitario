@@ -24,7 +24,7 @@
 
 .modal-delete-buttons{
     display: flex;
-    justify-content: center;
+    justify-content: flex-end;
     margin-top: 20px;
 }
 
@@ -47,13 +47,13 @@
 }
 
 .modal-delete-cancel {
-    background-color: #ccc;
-    color: #393939;
+    background-color: #818181;
+    color: #ffff;
 }
 
 .modal-delete-cancel:hover {
-    background-color: #bbbbbb;
-    color: #393939;
+    background-color: #777777;
+    color: #ffff;
 }
 
 .h3-modal-delete{

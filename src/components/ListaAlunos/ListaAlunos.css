@@ -13,8 +13,8 @@
     display: flex;
     justify-content: center;
     flex-direction: column;
-    padding: 20px;
-    border-radius: 10px;
+    padding: 10px;
+    border-radius: 5px;
     background-color: #ffff;
     margin: 0;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
@@ -27,7 +27,7 @@
 }
 
 .paragraph-area{
-    width: 50% ;
+    
     display: flex;
     justify-content: start;
     align-items: center;
@@ -188,7 +188,7 @@
     }
     
     .list-buttons {
-        width: 50%;
+        width: 45%;
         justify-content: space-between;
     }
 }
@@ -211,5 +211,5 @@
     .list-buttons {
         width: 50%;
         justify-content: space-between;
-    }
+    }   
 }

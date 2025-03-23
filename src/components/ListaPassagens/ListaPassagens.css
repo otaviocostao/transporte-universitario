@@ -9,12 +9,12 @@
     background-color: #ffff;
     margin: 0;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
-    overflow-x: auto; /* Adicionado para permitir rolagem horizontal */
+    overflow-x: auto;
 }
 
 .lista-passagens-wrapper {
     width: 100%;
-    overflow-x: auto; /* Permite rolagem horizontal */
+    overflow-x: auto;
 }
 
 .table-passagens {
@@ -34,7 +34,7 @@
 .table-rows-passagens td {
     padding: 12px;
     text-align: left;
-    vertical-align: middle; /* Alinha verticalmente */
+    vertical-align: middle;
     white-space: nowrap;
 }
 
@@ -86,7 +86,7 @@
     }
 
     .table-passagens {
-        min-width: 700px; /* Mantém a tabela legível e permite rolagem horizontal */
+        min-width: 700px; 
     }
 }
 

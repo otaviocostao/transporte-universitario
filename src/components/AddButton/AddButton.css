@@ -25,13 +25,11 @@
 
 .add-button {
     border-radius: 5px;
-    width: 100px;
-    height: 40px;
-    padding: 8px;
+    padding: 8px 12px;
     display: flex;
     justify-content: center;
     align-items: center;
-    border: 1px solid transparent;
+    border: none;
     font-size: 12pt;
     background-color:  #4a6cf7;
     cursor: pointer;

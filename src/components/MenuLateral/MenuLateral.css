@@ -14,7 +14,6 @@
     transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
 }
 
-/* Quando a sidebar está aberta */
 .menu-area-overlay.open {
     opacity: 1;
     visibility: visible;
@@ -36,7 +35,6 @@
     transition: transform 0.3s ease;
 }
 
-/* Quando a sidebar está aberta */
 .menu-area-overlay.open .menu-content {
     transform: translateX(0);
 }
