@@ -2,6 +2,7 @@ import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import Inicio from './pages/Inicio/Inicio.jsx';
 import Login from './pages/Login/Login.jsx';
+import Passagens from './pages/Passagens/Passagens.jsx'
 import { AuthProvider, useAuth } from './contexts/AuthContext';
 import './App.css';
 
@@ -26,6 +27,14 @@ function App() {
             element={
               <ProtectedRoute>
                 <Inicio />
+              </ProtectedRoute>
+            } 
+          />
+          <Route 
+            path="/passagens" 
+            element={
+              <ProtectedRoute>
+                <Passagens />
               </ProtectedRoute>
             } 
           />
