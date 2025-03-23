@@ -1,0 +1,159 @@
+.card-filtro-passagens {
+    width: 60%;
+    max-width: 800px;
+    height: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 10px;
+    border-radius: 5px;
+    background-color: #fff;
+    margin-bottom: 15px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+}
+
+.titulo-filtros-passagens {
+    width: 90%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.button-limpar-filtros {
+    border-radius: 5px;
+    padding: 8px 12px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1.5px solid #4a6cf7;
+    background-color: #fff;
+    cursor: pointer;
+    color: #4a6cf7;
+    transition: 0.3s;
+}
+
+.button-limpar-filtros:hover {
+    background-color: #4a6cf7;
+    color: #fff;
+}
+
+.area-campos-filtros {
+    width: 90%;
+    height: auto;
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    flex-wrap: wrap;
+}
+
+.campo-filtro {
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    flex-direction: row;
+    color: #393939;
+    margin-bottom: 8px;
+    margin-right: 10px;
+}
+
+.campo-filtro span {
+    margin-right: 8px;
+}
+
+.area-inputs-date {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.input-date {
+    padding: 8px;
+    border: 1px solid #e0e0e0;
+    background-color: #fff;
+    color: #393939;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+.div-selects-filtros {
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    flex-wrap: wrap;
+}
+
+.select-passagem {
+    padding: 8px;
+    border: 1px solid #e0e0e0;
+    background-color: #fff;
+    color: #393939;
+    border-radius: 5px;
+    width: 80%;
+    box-sizing: border-box;
+}
+
+/* Responsividade */
+@media screen and (max-width: 1024px) {
+    .card-filtro-passagens {
+        width: 80%;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .card-filtro-passagens {
+        width: 85%;
+    }
+
+    .area-campos-filtros {
+        flex-direction: column;
+        align-items: start;
+    }
+
+    .campo-filtro {
+        width: 100%;
+        flex-direction: column;
+        align-items: start;
+        margin-right: 0;
+    }
+
+    .area-inputs-date {
+        width: 100%;
+        justify-content: start;
+    }
+
+    .select-passagem {
+        width: 100%;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .card-filtro-passagens {
+        width: 90%;
+    }
+
+    .campo-filtro {
+        width: 100%;
+        flex-direction: column;
+        align-items: start;
+    }
+
+    .area-inputs-date {
+        width: 100%;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: start;
+    }
+
+    .select-passagem {
+        width: 100%;
+    }
+}
+
+@media screen and (max-width: 390px) {
+    .card-filtro-passagens {
+        width: 90%;
+    }
+}

@@ -1,0 +1,97 @@
+.lista-passagens-content {
+    width: 60%;
+    max-width: 800px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    padding: 10px;
+    border-radius: 5px;
+    background-color: #ffff;
+    margin: 0;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+    overflow-x: auto; /* Adicionado para permitir rolagem horizontal */
+}
+
+.lista-passagens-wrapper {
+    width: 100%;
+    overflow-x: auto; /* Permite rolagem horizontal */
+}
+
+.table-passagens {
+    width: 100%;
+    min-width: 600px;
+    border-collapse: collapse;
+    background: transparent;
+}
+
+.header-table-passagens {
+    color: #393939;
+    border-bottom: 2px solid #e6e6e6;
+    font-size: 16px;
+}
+
+.header-table-passagens th,
+.table-rows-passagens td {
+    padding: 12px;
+    text-align: left;
+    vertical-align: middle; /* Alinha verticalmente */
+    white-space: nowrap;
+}
+
+.header-table-passagens th {
+    border-bottom: 2px solid #e6e6e6;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.table-rows-passagens tr {
+    transition: background 0.3s ease;
+    color: #212529;
+}
+
+.table-rows-passagens tr:hover {
+    background: #f1f1f173;
+}
+
+.table-rows-passagens td {
+    border-bottom: 1px solid #ddd;
+}
+
+.cell-actions-passagens {
+    text-align: center;
+}
+
+.action-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+/* Responsividade */
+@media screen and (max-width: 1024px) {
+    .lista-passagens-content {
+        width: 80%;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .lista-passagens-content {
+        width: 90%;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .lista-passagens-content {
+        width: 90%;
+    }
+
+    .table-passagens {
+        min-width: 700px; /* Mantém a tabela legível e permite rolagem horizontal */
+    }
+}
+
+@media screen and (max-width: 390px) {
+    .lista-passagens-content {
+        width: 90%;
+    }
+}
