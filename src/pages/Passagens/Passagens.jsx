@@ -1,3 +1,4 @@
+import AddPassagem from '../../components/AddPassagem/AddPassagem';
 import BarraNavegacao from '../../components/BarraNavegacao/BarraNavegacao'; 
 import FiltroPassagens from '../../components/FiltroPassagens/FiltroPassagens';
 import ListaPassagens from '../../components/ListaPassagens/ListaPassagens';
@@ -12,7 +13,7 @@ function Passagens() {
             <BarraNavegacao />
             <div className='passagens-content'>
                 <main className="passagens-content">
-                    <h2>Passagens</h2>
+                    <AddPassagem />
                     <FiltroPassagens />
                     <ListaPassagens />
                 </main>
