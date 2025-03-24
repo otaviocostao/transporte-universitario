@@ -65,13 +65,12 @@
     display: flex;
 }
 
+.stats-nao-volta,
 .stats-liberado{
     height: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: rgba(62, 202, 93, 0.2);
-    color: #28a745;
     font-size: 10pt;
     border-radius: 13px;
     margin-left: 5px;
@@ -79,10 +78,18 @@
     padding-block: 3px;
 }
 
+.stats-liberado{
+    background-color: rgba(62, 202, 93, 0.2);
+    color: #28a745;
+}
+
+.stats-nao-volta{
+    background-color: rgba(202, 62, 62, 0.2);
+    color: #28a745;
+}
 
 .list-buttons{
     display: flex;
-    gap: 5px;
     flex-wrap: wrap;
 }
 
@@ -90,9 +97,7 @@
 .button-edit,
 .button-delete {
     border-radius: 5px;
-    width: 40px;
-    height: 40px;
-    padding: 6px;
+    padding: 5px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -105,14 +110,14 @@
 
 .button-ready {
     color: #83c25f;
-
+    margin-right: 5px;
   }
    
 
   
 .button-edit {
       color: #e9bb58;
-
+      margin-right: 5px;
       
 }
 
@@ -144,9 +149,7 @@
         flex-direction: row;
     }
 
-    .list-buttons {
-        margin-top: 5px;
-    }
+    
 }
 
 @media screen and (max-width: 768px) {
@@ -165,11 +168,6 @@
         display: flex;
         flex-direction: row;
     }
-
-    .list-buttons {
-        width: 30%;
-        justify-content: space-between;
-    }
 }
 
 @media screen and (max-width: 480px) {
@@ -186,11 +184,12 @@
         display: flex;
         flex-direction: row;
     }
-    
-    .list-buttons {
-        width: 45%;
-        justify-content: space-between;
-    }
+
+    .button-ready,
+    .button-edit,
+    .button-delete{
+        font-size: 12pt;
+    } 
 }
 
 @media screen and (max-width: 390px) {
@@ -208,10 +207,12 @@
         flex-direction: row;
     }
 
-    .list-buttons {
-        width: 50%;
-        justify-content: space-between;
-    }   
+
+    .button-ready,
+    .button-edit,
+    .button-delete{
+        font-size: 12pt;
+    } 
 
     .no-students-message{
         font-size: 10pt;
@@ -225,7 +226,7 @@
     }
 
     .lista-alunos {
-        width: 85%;
+        width: 95%;
     }
 
     .li-student {
@@ -233,10 +234,13 @@
         flex-direction: row;
     }
 
-    .list-buttons {
-        width: 55%;
-        justify-content: space-between;
-    }   
+
+        
+    .button-ready,
+    .button-edit,
+    .button-delete{
+        font-size: 12pt;
+    } 
 
     .no-students-message{
         font-size: 10pt;

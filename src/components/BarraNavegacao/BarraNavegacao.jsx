@@ -29,7 +29,9 @@ const BarraNavegacao = () => {
   
   return (
     <div className="nav-bar">
-      <h2>Transporte universitário</h2>
+      <a href="/">
+        <h2>Transporte universitário</h2>
+      </a>
       <div className="navbar-user-area">
         <button className='menu-button' onClick={handleMenuClick}>
           <BsList />

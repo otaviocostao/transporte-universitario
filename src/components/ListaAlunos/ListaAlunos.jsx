@@ -109,16 +109,18 @@ const ListaAlunos = ({ students, loading, selectedDate }) => {
                 <li className="li-student" key={aluno.id}>
                   <div className="paragraph-area">
                     <p className="paragraph-student">
-                      {index + 1}. {aluno.nome} {aluno.liberado && <div className="stats-liberado"><span>Liberado</span></div> }
+                      {index + 1}. {aluno.nome} {aluno.liberado && <div className="stats-liberado"><span>✅</span></div> } {aluno.viagem === 'ida' && <div className="stats-nao-volta"><span>❌</span></div> }
                     </p>
                   </div>
                   <div className="list-buttons">
-                    <button 
-                      className="button-ready" 
-                      onClick={() => handleReadyClick(aluno.id)}
-                    >
-                      <BsCheckSquare />
-                    </button>
+                    {aluno.viagem !=='ida' &&
+                      <button 
+                        className="button-ready" 
+                        onClick={() => handleReadyClick(aluno.id)}
+                      >
+                        <BsCheckSquare />
+                      </button>
+                    }
                     <button 
                       className="button-edit" 
                       onClick={() => handleEditClick(aluno)}
