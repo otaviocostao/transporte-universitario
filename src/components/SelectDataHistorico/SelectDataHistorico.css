@@ -1,0 +1,44 @@
+.content-select-data-historico{
+    width: 30vw;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    flex-direction: row;
+    padding: 10px;
+    border-radius: 5px;
+    background-color: #ffff;
+    margin: 0;
+    margin-bottom: 15px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+}
+
+.content-select-data-historico p{
+    font-size: 10pt;
+}
+
+.input-date-historico{
+    padding: 8px;
+    border: 1px solid #e0e0e0;
+    background-color: #fff;
+    color: #393939;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+@media screen and (max-width: 480px) {
+    .content-select-data-historico{
+        width: 90%;
+    }
+}
+
+@media screen and (max-width: 390px) {
+    .content-select-data-historico{
+        width: 90%;
+    }
+}
+
+@media screen and (max-width: 320px) {
+    .content-select-data-historico{
+        width: 90%;
+    }
+}

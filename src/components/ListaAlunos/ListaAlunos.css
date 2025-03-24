@@ -18,6 +18,7 @@
     background-color: #ffff;
     margin: 0;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+    font-size: 10pt;
 }
 
 .ul-lista-alunos{
@@ -47,8 +48,7 @@
     align-items: center;
     justify-content: center;
     color: #393939;
-    padding-inline: 5px;
-    padding-block: 3px;
+    
 }
 
 .li-student{
@@ -92,7 +92,7 @@
     border-radius: 5px;
     width: 40px;
     height: 40px;
-    padding: 8px;
+    padding: 6px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -158,7 +158,7 @@
 
     .lista-alunos {
         width: 80%;
-        padding: 15px;
+        padding: 10px;
     }
 
     .li-student {
@@ -212,4 +212,33 @@
         width: 50%;
         justify-content: space-between;
     }   
+
+    .no-students-message{
+        font-size: 10pt;
+    }
+}
+
+@media screen and (max-width: 320px) {
+    .container-lista-alunos {
+        width: 100%;
+        padding: 5px;
+    }
+
+    .lista-alunos {
+        width: 85%;
+    }
+
+    .li-student {
+        display: flex;
+        flex-direction: row;
+    }
+
+    .list-buttons {
+        width: 55%;
+        justify-content: space-between;
+    }   
+
+    .no-students-message{
+        font-size: 10pt;
+    }
 }

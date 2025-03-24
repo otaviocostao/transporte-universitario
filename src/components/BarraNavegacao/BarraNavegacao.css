@@ -8,15 +8,12 @@
 }
 
 .nav-bar>h2{
-    
     display: flex;
     align-items: center;
     justify-content: start;
     color: #4a6cf7;
     margin-left: 15px;
 }
-
-
 
 .navbar-button:hover {
     background-color: #405ed9;
@@ -39,4 +36,11 @@
 
 .menu-button:hover{
     color: #3650bc;
+}
+
+
+@media screen and (max-width: 390px) {
+  .nav-bar h2{
+    font-size: 14pt;
+  }
 }

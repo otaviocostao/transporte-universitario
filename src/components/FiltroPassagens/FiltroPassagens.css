@@ -95,7 +95,6 @@
     box-sizing: border-box;
 }
 
-/* Responsividade */
 @media screen and (max-width: 1024px) {
     .card-filtro-passagens {
         width: 80%;
@@ -155,5 +154,11 @@
 @media screen and (max-width: 390px) {
     .card-filtro-passagens {
         width: 90%;
+    }
+}
+
+@media screen and (max-width: 320px) {
+    .input-date{
+        padding: 5px;
     }
 }
