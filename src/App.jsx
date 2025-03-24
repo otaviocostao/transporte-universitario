@@ -5,6 +5,7 @@ import Login from './pages/Login/Login.jsx';
 import Passagens from './pages/Passagens/Passagens.jsx'
 import { AuthProvider, useAuth } from './contexts/AuthContext';
 import './App.css';
+import Historico from './pages/Historico/Historico.jsx';
 
 // Componente de rota protegida
 const ProtectedRoute = ({ children }) => {
@@ -35,6 +36,14 @@ function App() {
             element={
               <ProtectedRoute>
                 <Passagens />
+              </ProtectedRoute>
+            } 
+          />
+          <Route 
+            path="/historico" 
+            element={
+              <ProtectedRoute>
+                <Historico />
               </ProtectedRoute>
             } 
           />

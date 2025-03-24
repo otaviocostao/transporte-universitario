@@ -1,0 +1,26 @@
+.lista-historico-content{
+    width: 30vw;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    padding: 10px;
+    border-radius: 5px;
+    background-color: #ffff;
+    margin: 0;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+}
+
+.historico-lista-alunos{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    font-size: 10pt;
+}
+
+
+@media screen and (max-width: 480px) {
+    .lista-historico-content{
+        width: 90%;
+    }
+}

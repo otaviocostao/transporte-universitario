@@ -1,18 +1,13 @@
 :root {
   width: 100vw;
   font-family: 'Segoe UI', Tahoma, Verdana, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
+  
   display: flex;
   align-items: start;
   justify-content: center;
   flex-direction: column;
-
- 
   color: #292929;
   background-color: #f5f7fb;
-
-  font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
