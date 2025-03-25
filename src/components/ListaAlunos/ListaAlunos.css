@@ -65,6 +65,7 @@
     display: flex;
 }
 
+.stats-volta,
 .stats-nao-volta,
 .stats-liberado{
     height: 100%;
@@ -85,7 +86,11 @@
 
 .stats-nao-volta{
     background-color: rgba(202, 62, 62, 0.2);
-    color: #28a745;
+}
+
+.stats-volta{
+    background-color: rgba(202, 165, 62, 0.2);
+    color: #e9bb58;
 }
 
 .list-buttons{

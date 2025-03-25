@@ -2,7 +2,7 @@ import { useState } from 'react';
 import './AdicionarAluno.css';
 import { addStudent } from '../../services/studentService';
 
-const AdicionarAluno = ({ isOpen, onClose, selectedDate }) => {
+const AdicionarAluno = ({ isOpen, onClose }) => { // Remove selectedDate
   const [nome, setNome] = useState('');
   const [faculdade, setFaculdade] = useState('uefs');
   const [viagem, setViagem] = useState('bate-volta');
@@ -15,28 +15,23 @@ const AdicionarAluno = ({ isOpen, onClose, selectedDate }) => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    
+
     if (!nome.trim()) {
-      setError("O nome do aluno é obrigatório");
+      setError("O nome do aluno é obrigatório.");
       return;
     }
-    
+
     try {
       setLoading(true);
       setError(null);
-      
-      await addStudent({
-        nome,
-        faculdade,
-        viagem
-      });
-      
-      // Resetar formulário
+
+      await addStudent({ nome, faculdade, viagem }); // Chama addStudent
+
       setNome('');
       setFaculdade('uefs');
       setViagem('bate-volta');
-      
       onClose();
+
     } catch (err) {
       console.error("Erro ao adicionar aluno:", err);
       setError("Erro ao adicionar aluno. Tente novamente.");
@@ -55,9 +50,9 @@ const AdicionarAluno = ({ isOpen, onClose, selectedDate }) => {
     <div className='area-add-student-overlay' onClick={handleOverlayClick}>
       <div className='add-student-content' onClick={(e) => e.stopPropagation()}>
         <h3 className='h3-form-add-student'>Adicionar nome na lista</h3>
-        
+
         {error && <div className="error-message">{error}</div>}
-        
+
         <form onSubmit={handleSubmit}>
           <label className='add-text-area'>
             <span>Nome: </span>
@@ -100,16 +95,16 @@ const AdicionarAluno = ({ isOpen, onClose, selectedDate }) => {
             </select>
           </label>
           <div className='area-add-student-buttons'>
-            <button 
-              type="submit" 
+            <button
+              type="submit"
               className='button-add-student'
               disabled={loading}
             >
               {loading ? "Adicionando..." : "Adicionar"}
             </button>
-            <button 
-              type="button" 
-              className='button-cancel-add-student' 
+            <button
+              type="button"
+              className='button-cancel-add-student'
               onClick={onClose}
               disabled={loading}
             >

@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { updateStudent } from '../../services/studentService'; // Importe a função
 import './EditarAluno.css';
 
 const EditarAluno = ({ isOpen, onClose, onConfirm, aluno }) => {
@@ -6,6 +7,7 @@ const EditarAluno = ({ isOpen, onClose, onConfirm, aluno }) => {
   const [faculdade, setFaculdade] = useState('uefs');
   const [viagem, setViagem] = useState('bate-volta');
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null); // Estado para erros
 
   useEffect(() => {
     if (aluno) {
@@ -19,19 +21,27 @@ const EditarAluno = ({ isOpen, onClose, onConfirm, aluno }) => {
     return null;
   }
 
-  const handleSubmit = (event) => {
+ const handleSubmit = async (event) => {
     event.preventDefault();
-    setLoading(true);
-    
-    const updatedAluno = {
-      id: aluno.id,
-      nome,
-      faculdade,
-      viagem
-    };
-    
-    onConfirm(updatedAluno);
-    setLoading(false);
+
+    if (!nome.trim()) {
+      setError("O nome do aluno é obrigatório.");
+      return;
+    }
+
+    try {
+      setLoading(true);
+      setError(null);
+
+      const updatedAluno = await updateStudent(aluno.id, { nome, faculdade, viagem });
+      onConfirm(updatedAluno); // Passa o aluno atualizado
+
+    } catch (error) {
+      console.error("Erro ao atualizar aluno:", error);
+      setError("Erro ao atualizar aluno. Tente novamente.");
+    } finally {
+      setLoading(false);
+    }
   };
 
   const handleOverlayClick = (e) => {
@@ -43,7 +53,10 @@ const EditarAluno = ({ isOpen, onClose, onConfirm, aluno }) => {
   return (
     <div className='area-edit-student-overlay' onClick={handleOverlayClick}>
       <div className='edit-student-content' onClick={(e) => e.stopPropagation()}>
-        <h3 className='h3-form-edit-student'>Editar</h3>
+        <h3 className='h3-form-edit-student'>Editar Aluno</h3>
+
+        {error && <div className="error-message">{error}</div>} {/* Exibe mensagem de erro */}
+
         <form onSubmit={handleSubmit}>
           <label className='edit-text-area'>
             <span>Nome: </span>
@@ -86,16 +99,16 @@ const EditarAluno = ({ isOpen, onClose, onConfirm, aluno }) => {
             </select>
           </label>
           <div className='area-edit-student-buttons'>
-            <button 
-              type="submit" 
+            <button
+              type="submit"
               className='button-edit-student'
               disabled={loading}
             >
               {loading ? "Salvando..." : "Salvar"}
             </button>
-            <button 
-              type="button" 
-              className='button-cancel-edit-student' 
+            <button
+              type="button"
+              className='button-cancel-edit-student'
               onClick={onClose}
               disabled={loading}
             >

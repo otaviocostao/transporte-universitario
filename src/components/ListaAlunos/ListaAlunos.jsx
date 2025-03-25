@@ -1,20 +1,22 @@
-import { useState } from "react";
+import React, { useState, useEffect } from "react"; // Import useEffect
 import "./ListaAlunos.css";
 import { BsTrash3Fill, BsPencilSquare, BsCheckSquare } from "react-icons/bs";
 import ModalDelete from "../ModalDelete/ModalDelete";
 import EditarAluno from "../EditarAluno/EditarAluno";
-import { deleteStudent, toggleStudentStatus, updateStudent } from "../../services/studentService";
+import {
+  deleteStudent,
+  toggleStudentStatus,
+  updateStudent,
+} from "../../services/studentService";
 
-const ListaAlunos = ({ students, loading, selectedDate }) => {
-  const [error, setError] = useState(null);
-  
+const ListaAlunos = ({ students, loading, selectedDate, error }) => {
   const [showModal, setShowModal] = useState(false);
   const [alunoToDelete, setAlunoToDelete] = useState(null);
-  
   const [showEditModal, setShowEditModal] = useState(false);
   const [alunoEdit, setAlunoEdit] = useState(null);
+  const [localError, setLocalError] = useState(null); // Para erros locais
 
-  // Lidar com exclusão de aluno
+  // --- Deleção ---
   const handleDeleteClick = (aluno) => {
     setAlunoToDelete(aluno);
     setShowModal(true);
@@ -22,12 +24,13 @@ const ListaAlunos = ({ students, loading, selectedDate }) => {
 
   const handleConfirmDelete = async () => {
     try {
-      await deleteStudent(alunoToDelete.id, selectedDate);
+      setLocalError(null);
+      await deleteStudent(alunoToDelete.id); // Não precisa mais da data
       setShowModal(false);
       setAlunoToDelete(null);
     } catch (err) {
       console.error("Erro ao excluir aluno:", err);
-      setError("Erro ao excluir aluno. Tente novamente.");
+      setLocalError("Erro ao excluir aluno. Tente novamente.");
     }
   };
 
@@ -36,51 +39,62 @@ const ListaAlunos = ({ students, loading, selectedDate }) => {
     setAlunoToDelete(null);
   };
 
-  // Lidar com mudança de status do aluno
+ // --- Edição ---
+    const handleEditClick = (aluno) => {
+        setAlunoEdit(aluno);
+        setShowEditModal(true);
+    }
+
+    const handleCloseEditModal = () => {
+        setAlunoEdit(null);
+        setShowEditModal(false);
+    }
+    const handleConfirmEdit = async (updatedAluno) => {
+        try {
+          setLocalError(null);
+          await updateStudent(updatedAluno.id, updatedAluno); // Não precisa mais da data
+          setShowEditModal(false);
+          setAlunoEdit(null);
+        } catch (err) {
+          console.error("Erro ao atualizar aluno:", err);
+          setLocalError("Erro ao atualizar dados do aluno. Tente novamente.");
+        }
+    };
+
+  // --- Alternar Status (Liberado) ---
   const handleReadyClick = async (alunoId) => {
     try {
-      const aluno = students.find(a => a.id === alunoId);
-      await toggleStudentStatus(alunoId, aluno.liberado, selectedDate);
+      setLocalError(null);
+      const aluno = students.find((a) => a.id === alunoId);
+        if (!aluno) {
+            setLocalError("Aluno não encontrado.");
+            return;
+        }
+      const updatedAluno = await toggleStudentStatus(alunoId); 
+       if (updatedAluno) { 
+  
+        }
     } catch (err) {
       console.error("Erro ao atualizar status do aluno:", err);
-      setError("Erro ao atualizar status do aluno. Tente novamente.");
+      setLocalError("Erro ao atualizar status do aluno. Tente novamente.");
     }
   };
 
-  // Lidar com edição de aluno
-  const handleEditClick = (aluno) => {
-    setAlunoEdit(aluno);
-    setShowEditModal(true);
-  };
+    // useEffect para limpar erros locais quando a prop error (global) mudar
+    useEffect(() => {
+        setLocalError(null);
+    }, [error]);
 
-  const handleCloseEditModal = () => {
-    setAlunoEdit(null);
-    setShowEditModal(false);
-  };
-
-  const handleConfirmEdit = async (updatedAluno) => {
-    try {
-      await updateStudent(updatedAluno.id, updatedAluno, selectedDate);
-      setShowEditModal(false);
-      setAlunoEdit(null);
-    } catch (err) {
-      console.error("Erro ao atualizar aluno:", err);
-      setError("Erro ao atualizar dados do aluno. Tente novamente.");
-    }
-  };
-
-  // Função para agrupar alunos por faculdade
+    // --- Agrupar por faculdade ---
   const groupStudentsByFaculty = () => {
     const grouped = {};
-    
-    students.forEach(aluno => {
+    students.forEach((aluno) => {
       const faculty = aluno.faculdade.toUpperCase();
       if (!grouped[faculty]) {
         grouped[faculty] = [];
       }
       grouped[faculty].push(aluno);
     });
-    
     return grouped;
   };
 
@@ -88,8 +102,8 @@ const ListaAlunos = ({ students, loading, selectedDate }) => {
     return <div className="loading">Carregando lista de alunos...</div>;
   }
 
-  if (error) {
-    return <div className="error-message">{error}</div>;
+  if (error || localError) {
+    return <div className="error-message">{error || localError}</div>;
   }
 
   const groupedStudents = groupStudentsByFaculty();
@@ -98,7 +112,9 @@ const ListaAlunos = ({ students, loading, selectedDate }) => {
     <div className="container-lista-alunos">
       <div className="lista-alunos">
         {Object.keys(groupedStudents).length === 0 ? (
-          <p className="no-students-message">Nenhum estudante cadastrado para esta data.</p>
+          <p className="no-students-message">
+            Nenhum estudante cadastrado para esta data.
+          </p>
         ) : (
           Object.entries(groupedStudents).map(([faculty, facultyStudents]) => (
             <ul className="ul-lista-alunos" key={faculty}>
@@ -109,20 +125,29 @@ const ListaAlunos = ({ students, loading, selectedDate }) => {
                 <li className="li-student" key={aluno.id}>
                   <div className="paragraph-area">
                     <p className="paragraph-student">
-                      {index + 1}. {aluno.nome} {aluno.liberado && <div className="stats-liberado"><span>✅</span></div> } {aluno.viagem === 'ida' && <div className="stats-nao-volta"><span>❌</span></div> }
+                      {index + 1}. {aluno.nome}{" "}
+                      {aluno.liberado && (
+                        <span className="stats-liberado">✅</span>
+                      )}{" "}
+                      {aluno.viagem === "ida" && (
+                        <span className="stats-nao-volta">❌</span>
+                      )}
+                      {aluno.viagem === "volta" && (
+                        <span className="stats-volta">(volta)</span>
+                      )}
                     </p>
                   </div>
                   <div className="list-buttons">
-                    {aluno.viagem !=='ida' &&
-                      <button 
-                        className="button-ready" 
+                    {aluno.viagem !== "ida" && (
+                      <button
+                        className="button-ready"
                         onClick={() => handleReadyClick(aluno.id)}
                       >
                         <BsCheckSquare />
                       </button>
-                    }
-                    <button 
-                      className="button-edit" 
+                    )}
+                    <button
+                      className="button-edit"
                       onClick={() => handleEditClick(aluno)}
                     >
                       <BsPencilSquare />
@@ -141,6 +166,7 @@ const ListaAlunos = ({ students, loading, selectedDate }) => {
         )}
       </div>
 
+      {/* Modal de Deleção */}
       {showModal && (
         <ModalDelete
           isOpen={showModal}
@@ -149,13 +175,15 @@ const ListaAlunos = ({ students, loading, selectedDate }) => {
         >
           <h3 className="h3-modal-delete">Confirmar Exclusão</h3>
           <p className="paragraph-modal-delete">
-            Tem certeza de que deseja remover {alunoToDelete ? alunoToDelete.nome : ''} da lista?
+            Tem certeza de que deseja remover{" "}
+            {alunoToDelete ? alunoToDelete.nome : ""} da lista?
           </p>
         </ModalDelete>
       )}
 
+      {/* Modal de Edição */}
       {showEditModal && (
-        <EditarAluno 
+        <EditarAluno
           isOpen={showEditModal}
           onClose={handleCloseEditModal}
           onConfirm={handleConfirmEdit}

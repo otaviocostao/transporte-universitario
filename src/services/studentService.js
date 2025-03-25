@@ -1,35 +1,57 @@
 import {
   ref,
+  set,
+  push,
+  update,
+  remove,
   onValue,
   off,
-  query,
-  orderByChild,
-  equalTo,
+  get // Importante
 } from 'firebase/database';
-import { db } from '../firebase/config'; 
+import { db } from '../firebase/config';
 
+// Formatar data
 const formatDateKey = (date) => {
-  if (!date || !(date instanceof Date) || isNaN(date)) {
-    return ''; // Ou lançar um erro, se preferir
-  }
-  const d = new Date(date.getTime()); // Cria uma cópia, usando o timestamp
-  return `${d.getUTCFullYear()}-${String(d.getUTCMonth() + 1).padStart(2, '0')}-${String(d.getUTCDate()).padStart(2, '0')}`;
+  const d = new Date(date);
+  return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
 };
 
-// Configurar listener em tempo real para uma data específica
+// Obter alunos (para o histórico - não usado no CRUD da página principal)
+export const getStudents = async (date = new Date()) => {
+  const dateKey = formatDateKey(date);
+  const dateRef = ref(db, `students/${dateKey}`);
+
+  return new Promise((resolve, reject) => {
+    onValue(dateRef, (snapshot) => {
+      const students = [];
+      snapshot.forEach((childSnapshot) => {
+        students.push({
+          id: childSnapshot.key,
+          ...childSnapshot.val()
+        });
+      });
+      resolve(students);
+    }, {
+      onlyOnce: true
+    }, (error) => {
+      reject(error);
+    });
+  });
+};
+
+// Listener em tempo real
 export const subscribeToStudents = (selectedDate, callback) => {
-    if (!selectedDate || !(selectedDate instanceof Date) || isNaN(selectedDate)) {
-      callback([], new Error('Data inválida'));
-      return () => {}; 
-    }
+  if (!selectedDate || !(selectedDate instanceof Date) || isNaN(selectedDate)) {
+    callback([], new Error('Data inválida'));
+    return () => {};
+  }
 
   const dateKey = formatDateKey(selectedDate);
   const dateRef = ref(db, `students/${dateKey}`);
 
-
-  const onDataChange = (snapshot) => { // Função separada para melhor legibilidade
+  const onDataChange = (snapshot) => {
     const students = [];
-    if (snapshot.exists()) { 
+    if (snapshot.exists()) {
       snapshot.forEach((childSnapshot) => {
         students.push({
           id: childSnapshot.key,
@@ -37,31 +59,29 @@ export const subscribeToStudents = (selectedDate, callback) => {
         });
       });
     }
-    callback(students, null); // Chama a callback com os dados e null para erro
+    callback(students, null);
   };
 
-  const onError = (error) => { // Função separada para lidar com erros
-    console.error("Erro ao ouvir dados:", error); // Log do erro
+  const onError = (error) => {
+    console.error("Erro ao ouvir dados:", error);
     callback([], error);
   };
 
-  // Usar onValue com tratamento de erros
   onValue(dateRef, onDataChange, onError);
 
-  // Retornar função para cancelar a inscrição
   return () => {
-    off(dateRef, 'value', onDataChange); 
+    off(dateRef, 'value', onDataChange);
   };
 };
 
-
+// Adicionar aluno
 export const addStudent = async (studentData) => {
   const dateKey = formatDateKey(new Date());
   const newStudentRef = push(ref(db, `students/${dateKey}`));
 
   const studentWithMetadata = {
     ...studentData,
-    timestamp: Date.now(), 
+    timestamp: Date.now(),
     liberado: false,
   };
 
@@ -73,14 +93,14 @@ export const addStudent = async (studentData) => {
   };
 };
 
-// Atualizar um aluno
+// Atualizar aluno
 export const updateStudent = async (id, studentData, date = new Date()) => {
   const dateKey = formatDateKey(date);
   const studentRef = ref(db, `students/${dateKey}/${id}`);
 
   const updates = {
     ...studentData,
-    updatedAt: Date.now(), 
+    updatedAt: Date.now(),
   };
 
   await update(studentRef, updates);
@@ -91,7 +111,7 @@ export const updateStudent = async (id, studentData, date = new Date()) => {
   };
 };
 
-// Excluir um aluno
+// Excluir aluno
 export const deleteStudent = async (id, date = new Date()) => {
   const dateKey = formatDateKey(date);
   const studentRef = ref(db, `students/${dateKey}/${id}`);
@@ -99,26 +119,30 @@ export const deleteStudent = async (id, date = new Date()) => {
   return id;
 };
 
-
+// Alternar status (SEM TRANSACTION)
 export const toggleStudentStatus = async (id, date = new Date()) => {
   const dateKey = formatDateKey(date);
   const studentRef = ref(db, `students/${dateKey}/${id}`);
 
+  // 1. LER o valor atual
+  const snapshot = await get(studentRef);
 
-  try {
-        const {snapshot} = await transaction(studentRef, (currentData) => {
-            if (currentData) {
-                return { ...currentData, liberado: !currentData.liberado, updatedAt: Date.now() };
-            }
-            return currentData; 
-        });
-        if (snapshot.exists()){
-            return { id, liberado: snapshot.val().liberado };
-        }
-        return null;
+  if (!snapshot.exists()) {
+    console.error("Aluno não encontrado para alternar status.");
+    return null; // Ou lançar um erro
+  }
 
-    } catch (error) {
-        console.error("Erro ao alternar status:", error);
-        throw error; 
-    }
+  const currentData = snapshot.val();
+  const newLiberado = !currentData.liberado;
+
+  // 2. ATUALIZAR o valor
+  await update(studentRef, {
+    liberado: newLiberado,
+    updatedAt: Date.now(),
+  });
+
+  return {
+    id,
+    liberado: newLiberado,
+  };
 };
