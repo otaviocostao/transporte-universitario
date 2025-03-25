@@ -130,7 +130,7 @@ const ListaAlunos = ({ students, loading, selectedDate, error }) => {
                         <span className="stats-liberado">✅</span>
                       )}{" "}
                       {aluno.viagem === "ida" && (
-                        <span className="stats-nao-volta">❌</span>
+                        <span className="stats-nao-volta">(ida)</span>
                       )}
                       {aluno.viagem === "volta" && (
                         <span className="stats-volta">(volta)</span>
