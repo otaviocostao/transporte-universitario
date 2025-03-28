@@ -4,12 +4,16 @@ import AddButton from '../../components/AddButton/AddButton';
 import ListaAlunos from '../../components/ListaAlunos/ListaAlunos';
 import { subscribeToStudents } from '../../services/studentService';
 import './Inicio.css';
+import ListaPassagensInicio from '../../components/ListaPassagensInicio/ListaPassagensInicio';
+import { subscribeToPassagens } from '../../services/passagensService';
 
 function Inicio() {
-  const [selectedDate, setSelectedDate] = useState(new Date()); // Inicializa com um objeto Date
+  const [selectedDate, setSelectedDate] = useState(new Date()); 
   const [students, setStudents] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+
+  const [passagens, setPassagens] = useState([]);
 
   useEffect(() => {
     setLoading(true);
@@ -29,7 +33,23 @@ function Inicio() {
     return () => unsubscribe();
   }, [selectedDate]);
 
+  useEffect(() => {
+    setLoading(true);
+    setError(null);
 
+  const listaPassagens = subscribeToPassagens(selectedDate, (updatedPassagens, err) => {
+    if (err) {
+      setError(err.message || 'Erro ao carregar dados.');
+      setLoading(loading);
+      setPassagens([]);
+      return;
+    }
+    setPassagens(updatedPassagens);
+    setLoading(false);
+  });
+
+    return () => listaPassagens();
+  }, [selectedDate]);
 
   return (
     <div className="inicio-container">
@@ -41,6 +61,12 @@ function Inicio() {
           />
           <ListaAlunos
             students={students}
+            loading={loading}
+            error={error}
+            selectedDate={selectedDate}
+          />
+          <ListaPassagensInicio 
+            passagens={passagens}
             loading={loading}
             error={error}
             selectedDate={selectedDate}

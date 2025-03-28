@@ -1,9 +1,20 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import './AddPassagem.css';
 import FormAdicionarPassagem from '../FormAdicionarPassagem/FormAdicionarPassagem';
 
-const AddPassagem = () => {
+const AddPassagem = ({onDateChange, selectedDate}) => {
   const [showFormPassagem, setShowFormPassagem] = useState(false);
+  const [currentDate, setCurrentDate] = useState(selectedDate || new Date());
+
+  useEffect(() => {
+    if(!selectedDate){
+      const today = new Date();
+      setCurrentDate(today);
+      if(onDateChange) {
+        onDateChange(today);
+      }
+    }
+  }, [selectedDate, onDateChange])
 
   const handleClickAddPassagem = () => {
     setShowFormPassagem(true);
@@ -12,6 +23,11 @@ const AddPassagem = () => {
   const handleCloseAddPassagem = () => {
     setShowFormPassagem(false);
   };
+
+  const formatDate = (date) => {
+    return date.toLocaleDateString('pt-BR');
+  };
+
 
   return (
     <div className='content-adicionar-passagem'>
@@ -26,6 +42,7 @@ const AddPassagem = () => {
           <FormAdicionarPassagem
             isOpen={showFormPassagem}
             onClose={handleCloseAddPassagem}
+            selectedDate={selectedDate}
           />
         </div>
       )}

@@ -2,7 +2,7 @@ import { useState } from 'react';
 import './AdicionarAluno.css';
 import { addStudent } from '../../services/studentService';
 
-const AdicionarAluno = ({ isOpen, onClose }) => { // Remove selectedDate
+const AdicionarAluno = ({ isOpen, onClose }) => {
   const [nome, setNome] = useState('');
   const [faculdade, setFaculdade] = useState('uefs');
   const [viagem, setViagem] = useState('bate-volta');
@@ -17,7 +17,7 @@ const AdicionarAluno = ({ isOpen, onClose }) => { // Remove selectedDate
     event.preventDefault();
 
     if (!nome.trim()) {
-      setError("O nome do aluno é obrigatório.");
+      setError("O campo nome é obrigatório.");
       return;
     }
 

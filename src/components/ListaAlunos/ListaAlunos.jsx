@@ -9,7 +9,7 @@ import {
   updateStudent,
 } from "../../services/studentService";
 
-const ListaAlunos = ({ students, loading, selectedDate, error }) => {
+const ListaAlunos = ({ students, loading, error }) => {
   const [showModal, setShowModal] = useState(false);
   const [alunoToDelete, setAlunoToDelete] = useState(null);
   const [showEditModal, setShowEditModal] = useState(false);
@@ -115,7 +115,7 @@ const ListaAlunos = ({ students, loading, selectedDate, error }) => {
           <p className="no-students-message">
             Nenhum estudante cadastrado para esta data.
           </p>
-        ) : (
+          ) : (
           Object.entries(groupedStudents).map(([faculty, facultyStudents]) => (
             <ul className="ul-lista-alunos" key={faculty}>
               <li className="li-college">

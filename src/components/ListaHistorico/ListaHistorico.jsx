@@ -43,7 +43,13 @@ const ListaHistorico = ({students, loading, selectedDate}) => {
                 <li className="li-student" key={aluno.id}>
                   <div className="paragraph-area">
                     <p className="paragraph-student">
-                      {index + 1}. {aluno.nome}
+                      {index + 1}. {aluno.nome} 
+                      {aluno.viagem === "ida" && (
+                        <span className="stats-nao-volta">(ida)</span>
+                      )}
+                      {aluno.viagem === "volta" && (
+                        <span className="stats-volta">(volta)</span>
+                      )}
                     </p>
                   </div>
                 </li>
