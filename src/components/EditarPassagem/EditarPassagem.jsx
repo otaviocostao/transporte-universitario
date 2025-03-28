@@ -1,20 +1,50 @@
-import React, { useState } from 'react'; // Importe useState
-import './FormAdicionarPassagem.css';
-import { addStudent } from '../../services/studentService';
-import { addPassagem } from '../../services/passagensService';
+import React, { useState, useEffect } from 'react';
+import './EditarPassagem.css';
+import { updatePassagem } from '../../services/passagensService';
 
-const FormAdicionarPassagem = ({ isOpen, onClose, onConfirm }) => {
+const EditarPassagem = ({ isOpen, onClose, onConfirm, passagem }) => {
   const [nome, setNome] = useState('');
   const [destino, setDestino] = useState('');
-  const [viagem, setViagem] = useState('bate-volta'); 
-  const [valor, setValor] = useState('');
+  const [viagem, setViagem] = useState('bate-volta');
+  const [valor, setValor] = useState();
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null); // Estado para erros
 
-  const[loading, setLoading] = useState(false);
-  const[error, setError] = useState(null);
+  useEffect(() => {
+    if (passagem) {
+      setNome(passagem.nome);
+      setDestino(passagem.destino);
+      setViagem(passagem.viagem);
+      setValor(passagem.valor);
+    }
+  }, [valor]);
 
   if (!isOpen) {
     return null;
   }
+
+ const handleSubmit = async (event) => {
+    event.preventDefault();
+
+    if (!nome.trim()) {
+      setError("O nome da passagem é obrigatório.");
+      return;
+    }
+
+    try {
+      setLoading(true);
+      setError(null);
+
+      const updatedPassagem = await updatePassagem(passagem.id, { nome, destino, viagem, valor });
+      onConfirm(updatedPassagem);
+      onClose();
+    } catch (error) {
+      console.error("Erro ao atualizar passagem:", error);
+      setError("Erro ao atualizar passagem. Tente novamente.");
+    } finally {
+      setLoading(false);
+    }
+  };
 
   const handleOverlayClick = (e) => {
     if (e.target === e.currentTarget) {
@@ -22,47 +52,12 @@ const FormAdicionarPassagem = ({ isOpen, onClose, onConfirm }) => {
     }
   };
 
-    const handleSubmit = async (e) => {
-      e.preventDefault(); 
-
-      if(!nome.trim()){
-        setError("O nome do passageiro é obrigarório")
-      }
-      
-      if(!destino.trim()){
-        setError("O destino do passageiro é obrigarório")
-      }
-      
-      if (!valor.trim() || isNaN(parseFloat(valor))) {
-        setError("O valor da passagem é obrigatório e deve ser um número.");
-        return;
-    }
-
-      try{
-        setLoading(true);
-        setError(null);
-
-        await addPassagem({nome, destino, viagem, valor});
-      
-        setNome('');
-        setDestino('');
-        setViagem('bate-volta');
-        setValor('');
-        onClose();
-      }catch(err){
-        console.error("Erro ao adicionar passagem: ", err);
-        setError("Erro ao adicionar passagem. Tente novamente.");
-      }finally{
-        setLoading(false);
-      };
-    };
-
   return (
-    <div className='area-add-passagem-overlay' onClick={handleOverlayClick}>
-      <div className='add-passagem-content' onClick={(e) => e.stopPropagation()}>
-        <h3 className='h3-form-add-passagem'>Adicionar nova passagem</h3>
+    <div className='area-edit-student-overlay' onClick={handleOverlayClick}>
+      <div className='edit-student-content' onClick={(e) => e.stopPropagation()}>
+        <h3 className='h3-form-edit-student'>Editar Passagem</h3>
 
-        {error && <div className="error-message">{error}</div>}
+        {error && <div className="error-message">{error}</div>} {/* Exibe mensagem de erro */}
 
         <form onSubmit={handleSubmit}>
           <label className='add-text-area'>
@@ -103,7 +98,7 @@ const FormAdicionarPassagem = ({ isOpen, onClose, onConfirm }) => {
           <label className='add-text-area' id='input-valor-passagem'>
             <span>Valor:</span>
             <input
-              type="text"
+              type="text" 
               name="valor"
               id="valor"
               value={valor}
@@ -113,7 +108,7 @@ const FormAdicionarPassagem = ({ isOpen, onClose, onConfirm }) => {
           </label>
           <div className='area-add-student-buttons'>
             <button type="submit" className='button-add-student' disabled={loading}>
-              Adicionar
+              Salvar
             </button>
             <button
               type="button"
@@ -130,4 +125,4 @@ const FormAdicionarPassagem = ({ isOpen, onClose, onConfirm }) => {
   );
 };
 
-export default FormAdicionarPassagem;
+export default EditarPassagem;

@@ -13,8 +13,6 @@ const SelectDataHistorico = ({ onDateChange, selectedDate }) => {
     }
   };
 
-  // Função auxiliar para formatar a data para exibição no input
-  // Lida com string ou objeto Date
   const formatDateForInput = (date) => {
     if (!date) { return ''; }
 
