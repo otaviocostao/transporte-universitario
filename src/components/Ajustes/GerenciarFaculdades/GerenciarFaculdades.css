@@ -2,14 +2,13 @@
 
 .gerenciar-faculdades {
   width: 100%;
-  max-width: 750px; /* Largura máxima para este card */
+  max-width: 900px; /* Largura máxima para este card */
   background-color: #fff;
   border-radius: 8px;
   padding: 20px 25px; /* Mais padding lateral */
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08); /* Sombra sutil */
   display: flex;
   flex-direction: column;
-  gap: 20px; /* Espaço entre elementos internos */
 }
 
 .header-gerenciar-faculdades{
