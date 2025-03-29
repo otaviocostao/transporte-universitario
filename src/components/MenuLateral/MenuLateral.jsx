@@ -1,5 +1,5 @@
 import './MenuLateral.css'
-import { BsArrowLeft, BsBoxArrowRight, BsClockHistory, BsTicket, BsCashStack, BsHouse } from "react-icons/bs";
+import { BsArrowLeft, BsBoxArrowRight, BsClockHistory, BsTicket, BsSliders2, BsHouse } from "react-icons/bs";
 
 
 const MenuLateral = ({ isOpen, onClose, onLogout }) => {
@@ -28,8 +28,8 @@ const MenuLateral = ({ isOpen, onClose, onLogout }) => {
             <a href="/passagens" className='menu-sidebar-button'>Passagens</a>
           </div>
           <div className='area-sidebar-button'>
-            <BsCashStack className='sb-button-icon'/>
-            <a href="/pagamentos" className='menu-sidebar-button'>Pagamentos</a>
+            <BsSliders2 className='sb-button-icon'/>
+            <a href="/ajustes" className='menu-sidebar-button'>Ajustes</a>
           </div>
         </div>
         <div className='sidebar-footer'>

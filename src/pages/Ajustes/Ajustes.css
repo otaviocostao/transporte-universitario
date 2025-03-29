@@ -1,0 +1,45 @@
+/* Ajustes.css */
+
+.ajustes-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #f8f9fa; 
+    box-sizing: border-box;
+  }
+  
+  .ajustes-content {
+    width: 100%;
+    max-width: 1200px; /* Largura máxima para o conteúdo */
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centraliza as seções */
+    gap: 30px; /* Espaço vertical entre título e seções */
+  }
+  
+  .ajustes-content > h1 { /* Seleciona o H1 direto dentro de .ajustes-content */
+    color: #343a40;
+    margin-bottom: 10px; /* Reduzido o espaço abaixo do H1 */
+    text-align: center;
+    width: 100%;
+    font-size: 1.8rem; /* Tamanho do título principal */
+  }
+  
+  /* Container para cada card de gerenciamento */
+  .ajustes-section {
+    width: 100%;
+    display: flex;
+    justify-content: center; /* Centraliza o card na largura da seção */
+  }
+  
+  /* --- Responsividade Geral da Página --- */
+  @media screen and (max-width: 768px) {
+
+    .ajustes-content {
+      gap: 25px;
+    }
+    .ajustes-content > h1 {
+      font-size: 1.6rem;
+    }
+  }

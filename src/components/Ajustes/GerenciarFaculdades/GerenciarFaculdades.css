@@ -1,0 +1,175 @@
+/* GerenciarFaculdades.css */
+
+.gerenciar-faculdades {
+  width: 100%;
+  max-width: 750px; /* Largura máxima para este card */
+  background-color: #fff;
+  border-radius: 8px;
+  padding: 20px 25px; /* Mais padding lateral */
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08); /* Sombra sutil */
+  display: flex;
+  flex-direction: column;
+  gap: 20px; /* Espaço entre elementos internos */
+}
+
+.header-gerenciar-faculdades{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 0 0 10px 0;
+  color: #495057;
+  font-size: 1.4rem;
+  text-align: left; /* Título alinhado à esquerda */
+  padding-bottom: 10px;
+  border-bottom: 1px solid #dee2e6;
+}
+
+.gerenciar-faculdades h2 {
+  margin: 0 0 10px 0;
+  color: #495057;
+  font-size: 1.4rem;
+}
+
+/* Botão Adicionar */
+.gerenciar-faculdades .add-button {
+  align-self: flex-start; /* Alinha à esquerda */
+  border-radius: 5px;
+  padding: 9px 16px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  border: none;
+  background-color: #0d6efd; /* Azul padrão Bootstrap */
+  color: #fff;
+  font-size: 0.95rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.gerenciar-faculdades .add-button:hover {
+  background-color: #0b5ed7; /* Azul mais escuro */
+}
+
+.gerenciar-faculdades .add-button svg {
+  font-size: 1.1em;
+}
+
+/* Lista de Faculdades */
+.faculdade-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+}
+
+.faculdade-list li {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 5px; /* Padding ajustado */
+  border-bottom: 1px solid #e9ecef; /* Linha separadora clara */
+}
+
+.faculdade-list li:last-child {
+  border-bottom: none;
+}
+
+.faculdade-indice {
+  font-weight: 500;
+  color: #6c757d;
+  margin-right: 15px;
+  min-width: 30px; /* Espaço para o índice */
+  text-align: right;
+}
+
+.faculdade-nome {
+  text-align: start;
+  flex-grow: 1; /* Ocupa o espaço */
+  color: #212529;
+  font-size: 1rem;
+  margin-right: 15px; /* Espaço antes dos botões */
+}
+
+/* Container para botões de ação */
+.faculdade-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px; /* Espaço entre botões de ação */
+  flex-shrink: 0; /* Não encolhe */
+}
+
+/* Botões de ação (ícones) */
+.faculdade-actions button {
+  background: none;
+  border: none;
+  padding: 6px; /* Aumenta área de clique */
+  cursor: pointer;
+  color: #6c757d; /* Cinza */
+  font-size: 1.1rem;
+  transition: color 0.2s ease, background-color 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+}
+
+.faculdade-actions button:hover:not(:disabled) {
+  color: #343a40;
+  background-color: #e9ecef;
+}
+
+.faculdade-actions button:disabled {
+  color: #ced4da;
+  cursor: not-allowed;
+  background-color: transparent;
+}
+
+.faculdade-actions button[title="Excluir"]:hover:not(:disabled) {
+  color: #dc3545; /* Vermelho para excluir */
+  background-color: rgba(220, 53, 69, 0.1);
+}
+
+/* Mensagem de erro */
+.gerenciar-faculdades .error-message {
+  color: #842029;
+  background-color: #f8d7da;
+  border: 1px solid #f5c2c7;
+  padding: 10px 15px;
+  border-radius: 4px;
+  text-align: center;
+  margin-top: 10px;
+}
+
+/* --- Responsividade do Card --- */
+@media screen and (max-width: 600px) {
+  .gerenciar-faculdades {
+    padding: 15px;
+  }
+  .gerenciar-faculdades h2 {
+    font-size: 1.2rem;
+  }
+  .faculdade-list li {
+    padding: 10px 0;
+    gap: 8px;
+  }
+  .faculdade-nome {
+     font-size: 0.95rem;
+     width: 100%; /* Nome ocupa linha inteira */
+     margin-right: 0;
+     order: 1; /* Coloca o nome primeiro */
+  }
+  .faculdade-indice {
+    order: 0; /* Índice antes do nome */
+    margin-right: 5px;
+    min-width: auto;
+  }
+  .faculdade-actions {
+    
+    justify-content: flex-end; /* Alinha botões à direita */
+    margin-left: 0;
+    order: 2;
+    margin-top: 5px;
+  }
+}
