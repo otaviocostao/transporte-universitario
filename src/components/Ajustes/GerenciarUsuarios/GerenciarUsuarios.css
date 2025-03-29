@@ -1,0 +1,153 @@
+/* GerenciarUsuarios.css */
+
+.gerenciar-usuarios {
+    width: 100%;
+    max-width: 900px; /* Pode ser mais largo */
+    background-color: #fff;
+    border-radius: 8px;
+    padding: 20px 25px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  
+  .gerenciar-usuarios h2 {
+    margin: 0 0 10px 0;
+    color: #495057;
+    font-size: 1.4rem;
+    text-align: left;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #dee2e6;
+  }
+  
+  /* Nota sobre adição/exclusão */
+  .gerenciar-usuarios p i {
+    font-size: 0.9rem;
+    color: #6c757d;
+    display: block;
+    margin-top: -10px; /* Ajusta posição da nota */
+    margin-bottom: 15px;
+  }
+  
+  /* Lista de Usuários */
+  .usuario-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+  }
+  
+  .usuario-list li {
+    display: grid; /* Grid para melhor alinhamento */
+    /* Ajuste as colunas conforme necessário, a última é para ações */
+    grid-template-columns: minmax(200px, 1.5fr) minmax(150px, 1fr) minmax(100px, 1fr) auto;
+    gap: 15px; /* Espaço entre colunas */
+    align-items: center;
+    padding: 12px 5px;
+    border-bottom: 1px solid #e9ecef;
+  }
+  
+  .usuario-list li:last-child {
+    border-bottom: none;
+  }
+  
+  /* Estilos para as informações do usuário */
+  .usuario-nome,
+  .usuario-faculdade,
+  .usuario-regras {
+    color: #212529;
+    font-size: 0.95rem;
+    word-break: break-word; /* Quebra emails/nomes longos */
+  }
+  
+  .usuario-nome {
+      font-weight: 500; /* Destaca o nome */
+  }
+  
+  /* Container para botões de ação */
+  .usuario-actions {
+    display: flex;
+    align-items: center;
+    justify-self: end; /* Alinha na extremidade direita da célula do grid */
+    gap: 10px;
+  }
+  
+  /* Botões de ação (reutiliza estilo de GerenciarFaculdades) */
+  .usuario-actions button {
+    background: none;
+    border: none;
+    padding: 6px;
+    cursor: pointer;
+    color: #6c757d;
+    font-size: 1.1rem;
+    transition: color 0.2s ease, background-color 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 4px;
+  }
+  
+  .usuario-actions button:hover {
+    color: #343a40;
+    background-color: #e9ecef;
+  }
+  
+  .usuario-actions button[title*="Excluir"]:hover {
+    color: #dc3545;
+    background-color: rgba(220, 53, 69, 0.1);
+  }
+  
+  /* Mensagem de erro */
+  .gerenciar-usuarios .error-message {
+    color: #842029;
+    background-color: #f8d7da;
+    border: 1px solid #f5c2c7;
+    padding: 10px 15px;
+    border-radius: 4px;
+    text-align: center;
+    margin-top: 10px;
+  }
+  
+  /* --- Responsividade do Card --- */
+  @media screen and (max-width: 900px) {
+      .usuario-list li {
+          /* Muda para 2 colunas: info | ações */
+          grid-template-columns: 1fr auto;
+      }
+      .usuario-faculdade, .usuario-regras{
+          /* Coloca faculdade e regras na mesma célula do grid que o nome */
+          grid-column: 1 / 2; /* Ocupa a primeira coluna */
+          font-size: 0.85rem;
+          color: #6c757d;
+      }
+       .usuario-faculdade::before, .usuario-regras::before {
+          content: ""; /* Remove os "labels" automáticos */
+          margin: 0;
+      }
+       .usuario-faculdade{ margin-top: 4px; } /* Espaço se estiver abaixo do nome */
+  }
+  
+  
+  @media screen and (max-width: 600px) {
+    .gerenciar-usuarios {
+      padding: 15px;
+    }
+     .gerenciar-usuarios h2 {
+      font-size: 1.2rem;
+    }
+    .usuario-list li {
+      padding: 10px 0;
+      /* Mantém 2 colunas */
+    }
+     .usuario-nome, .usuario-faculdade, .usuario-regras {
+      font-size: 0.9rem;
+    }
+    .usuario-actions {
+      gap: 5px; /* Reduz espaço entre botões */
+    }
+     .usuario-actions button{
+         padding: 5px;
+         font-size: 1rem;
+     }
+  }
