@@ -6,6 +6,7 @@ import { subscribeToStudents } from '../../services/studentService';
 import './Inicio.css';
 import ListaPassagensInicio from '../../components/ListaPassagensInicio/ListaPassagensInicio';
 import { subscribeToPassagens } from '../../services/passagensService';
+import { getFaculdadesList } from '../../services/ajustesService';
 
 function Inicio() {
   const [selectedDate, setSelectedDate] = useState(new Date()); 
@@ -14,6 +15,21 @@ function Inicio() {
   const [error, setError] = useState(null);
 
   const [passagens, setPassagens] = useState([]);
+
+  const [faculdades, setFaculdades] = useState([]);
+  
+    useEffect(() => {
+      const fetchFaculdades = async () => {
+        try {
+          const lista = await getFaculdadesList();
+            setFaculdades(lista);
+            } catch (err) {
+              console.error("Erro ao buscar lista de faculdades:", err);
+              setError("Não foi possível carregar as faculdades para o formulário.");
+            }
+            };
+            fetchFaculdades();
+    }, []);
 
   useEffect(() => {
     setLoading(true);
@@ -64,6 +80,7 @@ function Inicio() {
             loading={loading}
             error={error}
             selectedDate={selectedDate}
+            faculdadesList={faculdades}
           />
           <ListaPassagensInicio 
             passagens={passagens}

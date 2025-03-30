@@ -25,19 +25,25 @@
 
 .add-button {
     border-radius: 5px;
-    padding: 8px 12px;
-    display: flex;
-    justify-content: center;
+    padding: 9px 16px;
+    display: inline-flex;
     align-items: center;
+    gap: 8px;
     border: none;
-    font-size: 11pt;
-    background-color:  #4a6cf7;
+    background-color: #0d6efd; /* Azul padrão Bootstrap */
+    color: #fff;
+    font-size: 0.95rem;
+    font-weight: 500;
     cursor: pointer;
-    color: #ffff;
-    font-weight: 400;
+    transition: background-color 0.2s ease;
   }
-  .add-button:hover {
-    background-color:  #405ed9;
+  
+.add-button:hover {
+    background-color: #0b5ed7; /* Azul mais escuro */
+  }
+  
+.add-button svg {
+    font-size: 1.1em;
   }
 
   

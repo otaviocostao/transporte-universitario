@@ -156,15 +156,27 @@ import {
   
   // Buscar todas as faculdades uma vez (útil para selects em formulários)
   export const getFaculdadesList = async () => {
-      const snapshot = await get(query(faculdadesRef, orderByChild('indice')));
-      const faculdades = [];
+    const faculdadesRef = ref(db, 'faculdades'); // Certifique-se que o caminho está correto
+  
+    // Usando get() para uma leitura única (mais simples que onValue com onlyOnce)
+    try {
+      const snapshot = await get(faculdadesRef);
+      const lista = [];
       if (snapshot.exists()) {
-          snapshot.forEach((childSnapshot) => {
-              faculdades.push({
-                  id: childSnapshot.key,
-                  nome: childSnapshot.val().nome
+        snapshot.forEach((childSnapshot) => {
+          const facData = childSnapshot.val();
+          // CORREÇÃO: Inclui TODOS os dados do snapshot + o ID
+          if (facData) { // Verifica se facData não é null/undefined
+              lista.push({
+                id: childSnapshot.key, // Pega a chave (ID)
+                ...facData // Copia TODOS os campos (incluindo nome e indice)
               });
-          });
+          }
+        });
       }
-      return faculdades;
+      return lista; // Retorna a lista completa
+    } catch (error) {
+      console.error("Erro ao buscar lista de faculdades:", error);
+      throw error; // Lança o erro para ser tratado no componente
+    }
   }
