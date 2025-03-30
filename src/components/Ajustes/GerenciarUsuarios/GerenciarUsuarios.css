@@ -9,7 +9,6 @@
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
     display: flex;
     flex-direction: column;
-    
   }
   
   .gerenciar-usuarios h2 {
@@ -18,7 +17,29 @@
     font-size: 1.4rem;
     text-align: left;
     padding-bottom: 10px;
-    border-bottom: 1px solid #dee2e6;
+  }
+  .gerenciar-usuarios .add-button {
+    align-self: flex-start; /* Alinha à esquerda */
+    border-radius: 5px;
+    padding: 9px 16px;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    border: none;
+    background-color: #0d6efd; /* Azul padrão Bootstrap */
+    color: #fff;
+    font-size: 0.95rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+  }
+
+  .gerenciar-usuarios .add-button:hover {
+    background-color: #0b5ed7; /* Azul mais escuro */
+  }
+  
+  .gerenciar-usuarios .add-button svg {
+    font-size: 1.1em;
   }
   
   /* Nota sobre adição/exclusão */
@@ -46,6 +67,7 @@
     align-items: center;
     padding: 12px 5px;
     border-bottom: 1px solid #e9ecef;
+    text-align: start;
   }
   
   .usuario-list li:last-child {

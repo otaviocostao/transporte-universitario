@@ -45,7 +45,7 @@ const AddFaculdadeModal = ({ isOpen, onClose, onConfirm }) => {
     // Usa handleOverlayClick para fechar ao clicar fora
     <div className='area-add-faculdade-overlay' onClick={handleOverlayClick}>
         <div className='add-faculdade-content' onClick={(e) => e.stopPropagation()}>
-            <h3 className='h3-form-add-faculdade'>Adicionar Faculdade na Rota</h3>
+            <h3 className='h3-form-add-faculdade'>Adicionar faculdade na rota</h3>
 
             {error && <div className="error-message">{error}</div>}
 
