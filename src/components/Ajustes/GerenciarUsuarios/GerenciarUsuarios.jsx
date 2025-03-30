@@ -124,11 +124,13 @@ function GerenciarUsuarios() {
 
     return (
         <div className="gerenciar-usuarios">
-            <h2>Gerenciar Usuários</h2>
-             {error && <div className="error-message">{error}</div>}
-            {/* <button onClick={openAddModal} className="add-button">
-                <BsPlusCircleFill /> Adicionar Usuário (Ver Notas no Código)
-            </button> */}
+            <div className='header-gerenciar-faculdades'>
+                <h2>Gerenciar Usuários</h2>
+                <button onClick={openAddModal} className="add-button">
+                    <BsPlusCircleFill /> Adicionar Usuário
+                </button>
+                {error && <div className="error-message">{error}</div>}
+            </div>
             <p><i>Obs: A adição/exclusão completa de usuários (incluindo autenticação) deve ser gerenciada com cuidado (ex: via Admin SDK ou fluxo de convite).</i></p>
 
 
