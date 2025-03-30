@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import {
-    subscribeToUsuarios,
-    addUsuarioData, // Lembre-se da questão do Auth
+    subscribeToUsuarios,// Lembre-se da questão do Auth
     updateUsuarioData,
     deleteUsuarioData, // Lembre-se da questão do Auth
     getFaculdadesList // Para o select no formulário
@@ -54,26 +53,7 @@ function GerenciarUsuarios() {
         return () => unsubscribe();
     }, []);
 
-    // --- Handlers CRUD (Lembre-se da separação Auth/DB) ---
-    const handleAddUsuario = async (newUserData) => {
-        // !!! IMPORTANTE: Esta função assume que a conta no Firebase Auth JÁ FOI CRIADA
-        // Você precisará de um fluxo para obter o UID do Auth antes de chamar isso.
-        // Exemplo: Se você criar via Admin SDK, ele retorna o UID.
-        // Exemplo: Se for um convite, o usuário se cadastra e você associa os dados depois.
-        const userId = prompt("Insira o UID do Firebase Auth para este usuário:"); // **NÃO FAÇA ISSO EM PRODUÇÃO** - Apenas para teste
-        if (!userId) {
-            setError("UID do Auth é necessário para adicionar dados do usuário.");
-            return;
-        }
 
-        try {
-            await addUsuarioData(userId, newUserData);
-            setShowAddModal(false);
-        } catch (err) {
-            console.error("Erro ao adicionar dados do usuário:", err);
-            setError("Erro ao salvar dados do usuário.");
-        }
-    };
 
      const handleEditUsuario = async (updatedData) => {
         if (!usuarioToEdit) return;
@@ -158,7 +138,6 @@ function GerenciarUsuarios() {
                 <AddUsuarioModal
                     isOpen={showAddModal}
                     onClose={() => setShowAddModal(false)}
-                    onConfirm={handleAddUsuario}
                     faculdadesList={faculdades} // Passa a lista para o select
                 />
              )}
