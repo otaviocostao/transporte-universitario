@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import './AddButton.css';
 import AdicionarAluno from '../AdicionarAluno/AdicionarAluno';
+import { BsPlusCircleFill} from "react-icons/bs";
 
 const AddButton = ({ onDateChange, selectedDate }) => {
   const [showAddForm, setShowAddForm] = useState(false);
@@ -43,7 +44,7 @@ const AddButton = ({ onDateChange, selectedDate }) => {
         <span>{formatDate(currentDate)}</span>
       </div>
       <button className='add-button' onClick={handleClickAddForm}>
-        Adicionar
+        <BsPlusCircleFill /> Adicionar
       </button>
 
       {showAddForm && (
