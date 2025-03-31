@@ -163,6 +163,9 @@ const ListaAlunos = ({ students, loading, error, faculdadesList, selectedDate })
 
   return (
     <div className="container-lista-alunos">
+      <div className='titulo-passagens'>
+            <h3>Transporte fixo</h3>
+        </div>
       <div className="lista-alunos">
         {sortedFacultyEntries.length === 0 ? (
           <p className="no-students-message">

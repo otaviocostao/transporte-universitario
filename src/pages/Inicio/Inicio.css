@@ -1,5 +1,5 @@
 .inicio-container {
-    width: 100vw;
+    width: 100%;
     display: flex;
     align-items: center;
     flex-direction: column;
@@ -9,13 +9,13 @@
 }
 
 .area-bar-content{
-    width: 100vw;
+    width: 100%;
     display: flex;
     flex-direction: row;
 }
 
 .inicio-content{
-    width: 100vw;
+    width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;

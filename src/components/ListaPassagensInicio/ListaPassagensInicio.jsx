@@ -23,10 +23,10 @@ const ListaPassagensInicio = ({ passagens, loading, selectedDate, error}) => {
 
   return (
     <div className='container-lista-passagens'>
-      <div className='lista-passagens'>
         <div className='titulo-passagens'>
             <h3>Passagens</h3>
         </div>
+      <div className='lista-passagens'>
         <ul className='ul-lista-passagens'>
         {!Array.isArray(passagens) || passagens.length === 0 ? (
             <p className="no-students-message">

@@ -2,6 +2,7 @@
     width: 30vw;
     height: auto;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     margin-top: 15px;
@@ -22,7 +23,7 @@
 
 
 .titulo-passagens{
-    width: 100%;
+    width: 90%;
     display: flex;
     align-items: center;
     justify-content: start;
