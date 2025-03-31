@@ -4,6 +4,7 @@ import ListaHistorico from '../../components/ListaHistorico/ListaHistorico';
 import SelectDataHistorico from '../../components/SelectDataHistorico/SelectDataHistorico';
 import { subscribeToStudents } from '../../services/studentService';
 import './Historico.css';
+import { getFaculdadesList } from '../../services/ajustesService';
 
 // Função auxiliar para obter a data de hoje no formato YYYY-MM-DD local
 const getTodayString = () => {
@@ -20,6 +21,21 @@ function Historico() {
   const [students, setStudents] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [faculdades, setFaculdades] = useState([]);
+    
+      useEffect(() => {
+        const fetchFaculdades = async () => {
+          try {
+            const lista = await getFaculdadesList();
+              setFaculdades(lista);
+              } catch (err) {
+                console.error("Erro ao buscar lista de faculdades:", err);
+                setError("Não foi possível carregar as faculdades para o formulário.");
+              }
+              };
+              fetchFaculdades();
+      }, []);
+      
 
   useEffect(() => {
     setLoading(true);
@@ -60,7 +76,7 @@ function Historico() {
     <div className="historico-container">
       <BarraNavegacao />
       <div className='historico-content'>
-        <main>
+        <main className='historico-content'>
           <div className='titulo-historico'>
             <h2>Histórico</h2>
           </div>
@@ -72,6 +88,7 @@ function Historico() {
             students={students}
             loading={loading}
             error={error}
+            faculdadesList={faculdades}
             // selectedDate={selectedDate} // Não é mais necessário passar para ListaHistorico
           />
         </main>
