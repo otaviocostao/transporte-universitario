@@ -7,6 +7,7 @@ import './Inicio.css';
 import ListaPassagensInicio from '../../components/ListaPassagensInicio/ListaPassagensInicio';
 import { subscribeToPassagens } from '../../services/passagensService';
 import { getFaculdadesList } from '../../services/ajustesService';
+import Footer from '../../components/Footer/Footer';
 
 function Inicio() {
   const [selectedDate, setSelectedDate] = useState(new Date()); 
@@ -88,6 +89,7 @@ function Inicio() {
             error={error}
             selectedDate={selectedDate}
           />
+          <Footer />
         </main>
       </div>
     </div>
