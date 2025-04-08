@@ -4,6 +4,7 @@ import { updateFaculdade } from '../../../services/ajustesService';
 const EditFaculdadeModal = ({isOpen, onClose, onConfirm, faculdade}) => {
 
   const[nome, setNome] = useState('');
+  const[embarque, setEmbarque] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
@@ -15,6 +16,7 @@ const EditFaculdadeModal = ({isOpen, onClose, onConfirm, faculdade}) => {
   useEffect(() => {
     if(faculdade){
       setNome(faculdade.nome);
+      setEmbarque(faculdade.embarque)
     }
   }, [faculdade]);
 
@@ -30,7 +32,7 @@ const EditFaculdadeModal = ({isOpen, onClose, onConfirm, faculdade}) => {
       setLoading(true);
       setError(null);
 
-      const updatedFaculdade = await updateFaculdade(faculdade.id, {nome});
+      const updatedFaculdade = await updateFaculdade(faculdade.id, {nome, embarque});
       onConfirm(updatedFaculdade);
     
     } catch (error) {
@@ -65,6 +67,15 @@ const EditFaculdadeModal = ({isOpen, onClose, onConfirm, faculdade}) => {
                       onChange={(e) => setNome(e.target.value)}
                       disabled={loading}
                     />
+                </label>
+                <label className='form-group checkbox-group'>
+                  <span>Embarque:</span>
+                  <input
+                      type="checkbox"
+                      checked={embarque}
+                      onChange={(e) => setEmbarque(e.target.checked)}
+                      disabled={loading}
+                  />
                 </label>
                 <div className='area-add-faculdade-buttons'>
                     <button

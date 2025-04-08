@@ -4,6 +4,7 @@ import { useState } from 'react';
 
 const AddFaculdadeModal = ({ isOpen, onClose, onConfirm }) => { 
     const [nome, setNome] = useState('');
+    const [embarque, setEmbarque] = useState(false)
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
 
@@ -21,7 +22,7 @@ const AddFaculdadeModal = ({ isOpen, onClose, onConfirm }) => {
     const handleSubmit = async (event) => {
         event.preventDefault();
 
-        if (!nome.trim()) {
+        if (!nome.trim()) {q
           setError("O nome da instituição é obrigatório.");
           return;
         }
@@ -30,8 +31,9 @@ const AddFaculdadeModal = ({ isOpen, onClose, onConfirm }) => {
         setError(null);
 
         try {
-          await onConfirm({ nome });
+          await onConfirm({ nome, embarque });
           setNome('');
+          setEmbarque(false);
 
         } catch (err) {
           console.error("Erro originado ao tentar adicionar faculdade:", err);
@@ -60,6 +62,15 @@ const AddFaculdadeModal = ({ isOpen, onClose, onConfirm }) => {
                       disabled={loading}
                       placeholder="Nome da Faculdade" // Placeholder é útil
                     />
+                </label>
+                <label className='form-group checkbox-group'>
+                  <span>Adicionar botão para embarque:</span>
+                  <input
+                      type="checkbox"
+                      checked={embarque}
+                      onChange={(e) => setEmbarque(e.target.checked)}
+                      disabled={loading}
+                  />
                 </label>
                 <div className='area-add-faculdade-buttons'>
                     <button

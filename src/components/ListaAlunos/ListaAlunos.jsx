@@ -74,6 +74,22 @@ const ListaAlunos = ({ students, loading, error, faculdadesList, selectedDate })
     }
   };
 
+  const handleEmbarcadoClick = async (alunoId) => {
+    try {
+      setLocalError(null);
+      const aluno = students.find((a) => a.id === alunoId);
+      if (!aluno) {
+          setLocalError("Aluno não encontrado.");
+          return;
+      }
+      await toggleEmbarcadoStatus(alunoId, selectedDate); // Passa selectedDate
+      // Lista atualizada pelo listener
+    } catch (err) {
+      console.error("Erro ao atualizar status do aluno:", err);
+      setLocalError("Erro ao atualizar status do aluno. Tente novamente.");
+    }
+  };
+
   // Limpa erro local se erro global mudar
   useEffect(() => {
     setLocalError(null);
@@ -190,6 +206,9 @@ const ListaAlunos = ({ students, loading, error, faculdadesList, selectedDate })
                       {aluno.liberado && (
                         <span className="stats-liberado">✅</span>
                       )}{" "}
+                      {aluno.embarcado && (
+                        <span className="stats-liberado">✅</span>
+                      )}{" "}
                        {aluno.viagem === "ida" && (
                         <span className="stats-nao-volta">(ida)</span>
                       )}
@@ -199,6 +218,16 @@ const ListaAlunos = ({ students, loading, error, faculdadesList, selectedDate })
                     </p>
                   </div>
                   <div className="list-buttons">
+                      
+
+                    {facultyId.embarque && ( // <<< PROBLEMA AQUI
+                      <button
+                        className="button-ready" // Pode querer um nome diferente (ex: button-embarcado)
+                        onClick={() => handleEmbarcadoClick(aluno.id)}
+                      >
+                        <BsCheckSquare />
+                      </button>
+                    )}
                      {aluno.viagem !== "ida" && (
                       <button
                         className="button-ready"

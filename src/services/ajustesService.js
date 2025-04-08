@@ -21,7 +21,8 @@ import {
   // Formatar dados da faculdade para salvar/atualizar
   const formatFaculdadeData = (data) => ({
       nome: data.nome || '',
-      indice: data.indice !== undefined ? parseInt(data.indice, 10) : 0 // Garante que índice seja número
+      indice: data.indice !== undefined ? parseInt(data.indice, 10) : 0, // Garante que índice seja número
+      embarque: data.embarque || false
   });
   
   // Listener para Faculdades (Ordenado por Índice)
@@ -58,13 +59,32 @@ import {
   export const updateFaculdade = async (id, faculdadeData) => {
     const faculdadeRef = ref(db, `faculdades/${id}`);
     const dataToUpdate = {};
-    if (faculdadeData.nome !== undefined) dataToUpdate.nome = faculdadeData.nome;
-    if (faculdadeData.indice !== undefined) dataToUpdate.indice = parseInt(faculdadeData.indice, 10);
+  
+    
+    if (faculdadeData.nome !== undefined) {
+        dataToUpdate.nome = faculdadeData.nome;
+    }
+    
+    if (faculdadeData.indice !== undefined) {
+        dataToUpdate.indice = parseInt(faculdadeData.indice, 10);
+    }
+  
+    if (faculdadeData.embarque !== undefined) {
+        dataToUpdate.embarque = Boolean(faculdadeData.embarque); // Garante que seja true ou false
+    }
   
     if (Object.keys(dataToUpdate).length > 0) {
+       console.log(`Atualizando faculdade ${id} com:`, dataToUpdate);
        await update(faculdadeRef, dataToUpdate);
-       return { id, ...dataToUpdate };
+       const currentDataSnapshot = await get(faculdadeRef);
+       if (currentDataSnapshot.exists()) {
+           return { id, ...currentDataSnapshot.val() };
+       } else {
+           return null;
+       }
+  
     }
+    console.log(`Nenhuma atualização necessária para faculdade ${id}.`); // Log para debug
     return null; // Nada para atualizar
   };
   
