@@ -55,16 +55,9 @@ function GerenciarUsuarios() {
 
 
 
-     const handleEditUsuario = async (updatedData) => {
-        if (!usuarioToEdit) return;
-        try {
-            await updateUsuarioData(usuarioToEdit.id, updatedData);
-            setShowEditModal(false);
-            setUsuarioToEdit(null);
-        } catch (err) {
-            console.error("Erro ao editar usuário:", err);
-            setError("Erro ao salvar alterações do usuário.");
-        }
+     const handleEditUsuario = () => {
+        setShowEditModal(false);
+        setUsuarioToEdit(null);
      };
 
      const handleDeleteUsuario = async () => {
@@ -114,9 +107,9 @@ function GerenciarUsuarios() {
 
 
             <ul className="usuario-list">
-                 {usuarios.map((user) => (
+                 {usuarios.map((user, index) => (
                     <li key={user.id}>
-                        <span className="usuario-nome">{user.nome} {user.sobrenome} ({user.email})</span>
+                        <span className="usuario-nome">{index+1} - {user.nome} {user.sobrenome} ({user.email})</span>
                         <span className="usuario-faculdade">Faculdade: {getFaculdadeName(user.faculdadeId)}</span>
                         <span className="usuario-regras">Regras: {user.regras?.join(', ') || 'user'}</span>
                         <div className="usuario-actions">
@@ -142,12 +135,12 @@ function GerenciarUsuarios() {
              )}
             {showEditModal && usuarioToEdit && (
                 <EditUsuarioModal
-                    isOpen={showEditModal}
-                    onClose={() => { setShowEditModal(false); setUsuarioToEdit(null); }}
-                    onConfirm={handleEditUsuario}
-                    usuario={usuarioToEdit}
-                    faculdadesList={faculdades} // Passa a lista para o select
-                />
+                isOpen={showEditModal}
+                onClose={() => { setShowEditModal(false); setUsuarioToEdit(null); }}
+                onConfirm={handleEditUsuario}
+                userToEdit={usuarioToEdit}
+                faculdadesList={faculdades}
+            />
             )}
              {showDeleteModal && usuarioToDelete && (
                 <ModalDelete
@@ -156,7 +149,10 @@ function GerenciarUsuarios() {
                     onConfirm={handleDeleteUsuario}
                     itemName={`${usuarioToDelete.nome} ${usuarioToDelete.sobrenome}`}
                     itemType="usuário (apenas dados)"
-                />
+                >
+                    <h3 className="h3-modal-delete">Confirmar Exclusão</h3>
+                    <p className="paragraph-modal-delete">Tem certeza de que deseja remover: {usuarioToDelete ? usuarioToDelete.nome : ""}?</p>    
+                </ModalDelete>
             )}
         </div>
     );

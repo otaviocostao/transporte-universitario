@@ -1,5 +1,7 @@
 {
   "projects": {
-    "default": "transporte-universitario-araci"
-  }
+    "default": "transp-universitario-araci"
+  },
+  "targets": {},
+  "etags": {}
 }
