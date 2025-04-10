@@ -156,12 +156,53 @@ import {
   // Atualizar Dados do Usuário (Exceto email/senha)
   export const updateUsuarioData = async (userId, usuarioData) => {
     const usuarioRef = ref(db, `usuarios/${userId}`);
-      const dataToUpdate = formatUsuarioData(usuarioData); // Garante formatação correta
-      // Remove campos que não devem ser atualizados diretamente aqui (ex: email)
-      delete dataToUpdate.email;
   
+    // Cria uma cópia dos dados recebidos para não modificar o original
+    const dataToUpdate = { ...usuarioData };
+
+    delete dataToUpdate.email;
+    delete dataToUpdate.regras; 
+    delete dataToUpdate.uid;
+    delete dataToUpdate.id;
+    delete dataToUpdate.createdAt;
+  
+    // Remova campos que NUNCA devem ser atualizados por esta função
+    // (O email geralmente não é alterado, e regras pode ter lógica própria)
+    delete dataToUpdate.email;
+    // Considere se 'regras' deve ser atualizado aqui ou por uma função separada.
+    // Se 'regras' PODE ser atualizado aqui, certifique-se que 'usuarioData.regras'
+    // já está no formato de OBJETO correto vindo do EditUsuarioModal.
+    // delete dataToUpdate.regras; // Descomente se regras NUNCA são atualizadas aqui.
+  
+    // Remove o UID se ele foi passado acidentalmente no objeto
+    delete dataToUpdate.uid;
+    delete dataToUpdate.id; // Remove id também, se existir
+  
+    // Verifica se há algo para atualizar após as remoções
+    if (Object.keys(dataToUpdate).length === 0) {
+        console.warn("updateUsuarioData: Nenhum dado válido para atualizar após remoções.");
+        // Você pode querer retornar null ou o perfil atual sem tentar o update
+        // const currentSnapshot = await get(usuarioRef);
+        // return currentSnapshot.exists() ? { id: userId, ...currentSnapshot.val() } : null;
+         return null; // Ou lance um erro informando que nada foi alterado
+    }
+  
+  
+    console.log(`DEBUG: Enviando para update em /usuarios/${userId}:`, JSON.stringify(dataToUpdate, null, 2));
+  
+    // Envia APENAS os campos recebidos e permitidos para o Firebase
     await update(usuarioRef, dataToUpdate);
-    return { id: userId, ...dataToUpdate };
+  
+    // Retorna os dados que foram enviados para atualização (não o objeto formatado completo)
+    // Ou busca os dados atualizados do banco para retornar o estado mais recente
+     const updatedSnapshot = await get(usuarioRef);
+     if (updatedSnapshot.exists()) {
+         return { id: userId, ...updatedSnapshot.val() };
+     } else {
+         // Isso não deveria acontecer se o update deu certo, mas é um fallback
+         return { id: userId, ...usuarioData }; // Retorna o que foi enviado originalmente
+     }
+  
   };
   
   // Deletar Dados do Usuário do Realtime Database
@@ -200,3 +241,20 @@ import {
       throw error; // Lança o erro para ser tratado no componente
     }
   }
+
+  export const setUserActivity = async (userId, isActive) => {
+    if (typeof isActive !== 'boolean') {
+        throw new Error("O status de atividade deve ser true ou false.");
+    }
+    // Referência para o nó PAI do usuário
+    const userRef = ref(db, `usuarios/${userId}`);
+    try {
+        // Usa update() no nó pai, especificando apenas o campo a ser alterado
+        await update(userRef, { isActive: isActive });
+        console.log(`Usuário ${userId} definido como ${isActive ? 'ativo' : 'inativo'} (via update)`);
+        return { id: userId, isActive: isActive };
+    } catch (error) {
+         console.error(`Erro ao definir atividade para usuário ${userId}:`, error);
+         throw error; // Re-lança o erro para ser pego no componente
+    }
+  };
