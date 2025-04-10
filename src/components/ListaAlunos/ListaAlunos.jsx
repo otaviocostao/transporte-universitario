@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useMemo } from "react";
 import "./ListaAlunos.css";
-import { BsTrash3Fill, BsPencilSquare, BsCheckSquare } from "react-icons/bs";
+import { BsTrash3Fill, BsPencilSquare, BsCheckSquare, BsArrowUpSquare } from "react-icons/bs";
 // IMPORTANTE: Adicionar a importação da nova função
 import { toggleEmbarqueStatus } from "../../services/studentService";
 import ModalDelete from "../ModalDelete/ModalDelete";
@@ -182,7 +182,7 @@ const ListaAlunos = ({ students, loading, error, faculdadesList, selectedDate })
                           onClick={() => handleEmbarcadoClick(aluno.id)}
                           title="Marcar/Desmarcar Embarque" // Tooltip útil
                         >
-                          <BsCheckSquare /> {/* Ou outro ícone */}
+                          <BsArrowUpSquare />
                         </button>
                       )}
                       {aluno.viagem !== "ida" && (
