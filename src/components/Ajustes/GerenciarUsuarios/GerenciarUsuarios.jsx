@@ -8,7 +8,7 @@ import {
 import AddUsuarioModal from '../AddUsuarioModal/AddUsuarioModal'; 
 import EditUsuarioModal from '../EditUsuarioModal/EditUsuarioModal'; 
 import ModalDelete from '../../ModalDelete/ModalDelete.jsx';
-import { BsPlusCircleFill, BsPencilSquare, BsTrash3Fill } from "react-icons/bs";
+import { BsPlusCircleFill, BsPencilSquare,  } from "react-icons/bs";
 import './GerenciarUsuarios.css';
 import { useAuth } from '../../../contexts/AuthContext.jsx';
 import { FaToggleOff, FaToggleOn } from 'react-icons/fa';
@@ -48,14 +48,14 @@ function GerenciarUsuarios() {
     useEffect(() => {
         console.log("GerenciarUsuarios: useEffect de usuários executado. AuthLoading:", authLoading, "UserProfile:", userProfile);
 
-        // Lógica condicional DENTRO do useEffect
+     
         const isAdmin = userProfile?.regras?.admin === true;
-        let unsubscribe = () => {}; // Função vazia para o caso de não iniciar o listener
+        let unsubscribe = () => {};
 
-        if (!authLoading) { // Só faz algo se o auth JÁ carregou
+        if (!authLoading) {
             if (isAdmin) {
                 console.log("GerenciarUsuarios: Usuário é admin, iniciando listener...");
-                setLoadingUsuarios(true); // Inicia o loading dos usuários
+                setLoadingUsuarios(true);
                 
                 unsubscribe = subscribeToUsuarios((data, err) => {
                     if (err) {
@@ -68,27 +68,34 @@ function GerenciarUsuarios() {
                         setUsuarios([]);
                     } else {
                         if (data && Array.isArray(data)) {
-                        
-                        const sortedData = [...data].sort((a, b) => {
-                            const nomeCompletoA = `${a.nome} ${a.sobrenome}`.toLowerCase();
-                            const nomeCompletoB = `${b.nome} ${b.sobrenome}`.toLowerCase();
-                            return nomeCompletoA.localeCompare(nomeCompletoB);
-                        });
+                    const sortedData = [...data].sort((a, b) => {
+                        // Atribui 1 para ativos e 0 para inativos.
+                        const statusA = a.isActive !== false ? 1 : 0;
+                        const statusB = b.isActive !== false ? 1 : 0;
+
+                        const statusDifference = statusB - statusA;
+                        if (statusDifference !== 0) {
+                            return statusDifference;
+                        }
+
+                        const nomeCompletoA = `${a.nome} ${a.sobrenome}`.toLowerCase();
+                        const nomeCompletoB = `${b.nome} ${b.sobrenome}`.toLowerCase();
+                        return nomeCompletoA.localeCompare(nomeCompletoB);
+                    });
                         setUsuarios(sortedData);
                     } else {
                         setUsuarios([]);
                     }
-                    setError(null);
+                        setError(null);
                     }
-                    setLoadingUsuarios(false); // Termina o loading dos usuários
+                    setLoadingUsuarios(false); 
                 });
 
             } else {
-                // Se auth carregou mas não é admin
+                
                 console.warn("GerenciarUsuarios: Usuário não é admin, não buscando lista.");
-                // setError("Acesso não autorizado para visualizar usuários."); // Opcional: Mostrar erro
-                setUsuarios([]); // Limpa a lista
-                setLoadingUsuarios(false); // Termina o loading (sem dados)
+                setUsuarios([]); 
+                setLoadingUsuarios(false); 
             }
         } else {
              // Se authLoading for true, espera (e mantém loadingUsuarios como true)
@@ -96,14 +103,13 @@ function GerenciarUsuarios() {
              setLoadingUsuarios(true);
         }
 
-        // Função de limpeza do useEffect: será chamada quando o componente desmontar
-        // ou ANTES da próxima execução do useEffect (se as dependências mudarem)
+       
         return () => {
              console.log("GerenciarUsuarios: Limpeza do useEffect de usuários. Cancelando listener...");
-             unsubscribe(); // Cancela o listener do Firebase
+             unsubscribe(); 
         };
 
-    }, [authLoading, userProfile]); // Dependências corretas
+    }, [authLoading, userProfile]); 
 
     useEffect(() => {
         const totalPages = Math.ceil(usuarios.length / itensPorPagina);
@@ -190,7 +196,7 @@ function GerenciarUsuarios() {
                                     <BsPencilSquare />
                                  </button>
                                  <button onClick={() => handleToggleActivity(user)} title={user.isActive === false ? 'Ativar Usuário' : 'Inativar Usuário'}>
-                                    {user.isActive === false ? <FaToggleOff color="grey"/> : <FaToggleOn color="green"/>}
+                                    {user.isActive === false ? <FaToggleOff size={23} color="grey"/> : <FaToggleOn size={23} color="green"/>}
                                 </button>
                             </div>
                         </li>
