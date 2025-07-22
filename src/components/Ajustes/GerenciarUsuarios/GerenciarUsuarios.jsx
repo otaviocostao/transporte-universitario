@@ -14,6 +14,13 @@ import { useAuth } from '../../../contexts/AuthContext.jsx';
 import { FaToggleOff, FaToggleOn } from 'react-icons/fa';
 import Paginacao from '../../Paginacao/Paginacao.jsx';
 
+const removerAcentos = (str) => {
+    // NFD (Normalization Form Canonical Decomposition) separa o caractere base do acento.
+    // Ex: "ç" se torna "c" + "¸"
+    // A regex /[\u0300-\u036f]/g encontra todos os caracteres de acento (diacríticos).
+    return str.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+}
+
 function GerenciarUsuarios() {
     
     const { userProfile, loading: authLoading } = useAuth(); 
@@ -29,6 +36,8 @@ function GerenciarUsuarios() {
     
     const [currentPage, setCurrentPage] = useState(1);
     const [itensPorPagina] = useState(20);
+
+    const [searchTerm, setSearchTerm] = useState('');
     
     useEffect(() => {
 
@@ -118,9 +127,22 @@ function GerenciarUsuarios() {
         }
     }, [usuarios, currentPage, itensPorPagina]);
 
+    useEffect(() => {
+        setCurrentPage(1);
+    }, [searchTerm]);
+
+    const normalizedSearchTerm = removerAcentos(searchTerm.toLowerCase());
+
+    const filteredUsers = usuarios.filter(user => {
+        const nomeCompleto = `${user.nome} ${user.sobrenome}`;
+        const normalizedNomeCompleto = removerAcentos(nomeCompleto.toLowerCase());
+        return normalizedNomeCompleto.includes(normalizedSearchTerm);
+    });
+
     const indexOfLastItem = currentPage * itensPorPagina;
     const indexOfFirstItem = indexOfLastItem - itensPorPagina;
-    const currentUsers = usuarios.slice(indexOfFirstItem, indexOfLastItem);
+    const currentUsers = filteredUsers.slice(indexOfFirstItem, indexOfLastItem);
+
 
     const paginate = (pageNumber) => setCurrentPage(pageNumber);
     
@@ -173,6 +195,17 @@ function GerenciarUsuarios() {
                     <BsPlusCircleFill /> Adicionar
                 </button>
             </div>
+
+            <div className="search-bar-container">
+                <input
+                    type="text"
+                    placeholder="Buscar por nome ou sobrenome..."
+                    value={searchTerm}
+                    onChange={(e) => setSearchTerm(e.target.value)}
+                    className="search-input"
+                />
+            </div>
+
             {/* Exibe erro SE existir E não estiver carregando */}
             {error && !loadingUsuarios && <div className="error-message">{error}</div>}
 
@@ -207,7 +240,7 @@ function GerenciarUsuarios() {
             </ul>
             <Paginacao
                 itensPorPagina={itensPorPagina}
-                totalItens={usuarios.length}
+                totalItens={filteredUsers.length}
                 paginate={paginate}
                 currentPage={currentPage}
             />

@@ -50,7 +50,19 @@
     margin-top: -10px; /* Ajusta posição da nota */
     margin-bottom: 15px;
   }
-  
+    
+  .search-bar-container {
+    margin: 15px 0;
+  }
+
+  .search-input {
+    width: 100%;
+    padding: 10px 15px;
+    font-size: 1rem;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    box-sizing: border-box; /* Garante que o padding não aumente a largura total */
+  } 
   /* Lista de Usuários */
   .usuario-list {
     list-style: none;
