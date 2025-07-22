@@ -1,54 +1,52 @@
-// Em GerenciarUsuarios.jsx
-
 import React, { useState, useEffect } from 'react';
 import {
-    subscribeToUsuarios,// Lembre-se da questão do Auth
-    deleteUsuarioData, // Lembre-se da questão do Auth
-    getFaculdadesList, // Para o select no formulário
+    subscribeToUsuarios,
+    deleteUsuarioData, 
+    getFaculdadesList, 
     setUserActivity
 } from '../../../services/ajustesService';
-import AddUsuarioModal from '../AddUsuarioModal/AddUsuarioModal'; // Crie
-import EditUsuarioModal from '../EditUsuarioModal/EditUsuarioModal'; // Crie
+import AddUsuarioModal from '../AddUsuarioModal/AddUsuarioModal'; 
+import EditUsuarioModal from '../EditUsuarioModal/EditUsuarioModal'; 
 import ModalDelete from '../../ModalDelete/ModalDelete.jsx';
 import { BsPlusCircleFill, BsPencilSquare, BsTrash3Fill } from "react-icons/bs";
 import './GerenciarUsuarios.css';
 import { useAuth } from '../../../contexts/AuthContext.jsx';
 import { FaToggleOff, FaToggleOn } from 'react-icons/fa';
+import Paginacao from '../../Paginacao/Paginacao.jsx';
 
 function GerenciarUsuarios() {
-    // --- Hooks SEMPRE na mesma ordem ---
-    const { userProfile, loading: authLoading } = useAuth(); // Hook 1
-    const [usuarios, setUsuarios] = useState([]);           // Hook 2
-    const [faculdades, setFaculdades] = useState([]);       // Hook 3
-    const [loadingUsuarios, setLoadingUsuarios] = useState(true); // Hook 4
-    const [error, setError] = useState(null);               // Hook 5
-    const [showAddModal, setShowAddModal] = useState(false); // Hook 6
-    const [showEditModal, setShowEditModal] = useState(false); // Hook 7
-    const [usuarioToEdit, setUsuarioToEdit] = useState(null); // Hook 8
-    const [showDeleteModal, setShowDeleteModal] = useState(false); // Hook 9
-    const [usuarioToDelete, setUsuarioToDelete] = useState(null); // Hook 10
-    // --- Fim dos Hooks ---
     
+    const { userProfile, loading: authLoading } = useAuth(); 
+    const [usuarios, setUsuarios] = useState([]); 
+    const [faculdades, setFaculdades] = useState([]); 
+    const [loadingUsuarios, setLoadingUsuarios] = useState(true); 
+    const [error, setError] = useState(null); 
+    const [showAddModal, setShowAddModal] = useState(false); 
+    const [showEditModal, setShowEditModal] = useState(false); 
+    const [usuarioToEdit, setUsuarioToEdit] = useState(null); 
+    const [showDeleteModal, setShowDeleteModal] = useState(false); 
+    const [usuarioToDelete, setUsuarioToDelete] = useState(null);
     
-
-    // useEffect para buscar faculdades (Chame este ANTES do de usuários se precisar dele primeiro)
+    const [currentPage, setCurrentPage] = useState(1);
+    const [itensPorPagina] = useState(20);
+    
     useEffect(() => {
-        // console.log("GerenciarUsuarios: Buscando faculdades..."); // Para debug
+
         const fetchFaculdades = async () => {
             try {
                 const lista = await getFaculdadesList();
                 setFaculdades(lista);
             } catch (err) {
                 console.error("Erro ao buscar lista de faculdades:", err);
-                setError("Não foi possível carregar as faculdades."); // Pode sobrescrever erro de usuário
+                setError("Não foi possível carregar as faculdades.");
             }
         };
         fetchFaculdades();
-    }, []); // Executa só uma vez
+    }, []);
 
-    // useEffect para ouvir usuários (Chamado incondicionalmente)
+
     useEffect(() => {
-        console.log("GerenciarUsuarios: useEffect de usuários executado. AuthLoading:", authLoading, "UserProfile:", userProfile); // Debug
+        console.log("GerenciarUsuarios: useEffect de usuários executado. AuthLoading:", authLoading, "UserProfile:", userProfile);
 
         // Lógica condicional DENTRO do useEffect
         const isAdmin = userProfile?.regras?.admin === true;
@@ -97,10 +95,19 @@ function GerenciarUsuarios() {
 
     }, [authLoading, userProfile]); // Dependências corretas
 
-    // --- Restante do componente ---
+    useEffect(() => {
+        const totalPages = Math.ceil(usuarios.length / itensPorPagina);
+        if (currentPage > totalPages && totalPages > 0) {
+            setCurrentPage(totalPages);
+        }
+    }, [usuarios, currentPage, itensPorPagina]);
 
-    // Funções para abrir modais (openAddModal, openEditModal, openDeleteModal)
-    // ...
+    const indexOfLastItem = currentPage * itensPorPagina;
+    const indexOfFirstItem = indexOfLastItem - itensPorPagina;
+    const currentUsers = usuarios.slice(indexOfFirstItem, indexOfLastItem);
+
+    const paginate = (pageNumber) => setCurrentPage(pageNumber);
+    
     const openAddModal = () => setShowAddModal(true);
     const openEditModal = (usuario) => { /* ... */ setUsuarioToEdit(usuario); setShowEditModal(true); };
     const openDeleteModal = (usuario) => { /* ... */ setUsuarioToDelete(usuario); setShowDeleteModal(true); };
@@ -155,31 +162,39 @@ function GerenciarUsuarios() {
 
 
             <ul className="usuario-list">
-                 {/* Renderiza a lista apenas se não estiver carregando E não houver erro E houver usuários */}
-                 {!loadingUsuarios && !error && usuarios.length > 0 && usuarios.map((user, index) => (
-                    <li key={user.id || index}> {/* Usa index como fallback de key se id não existir */}
-                        <span className="usuario-nome">{index+1} - {user.nome} {user.sobrenome} ({user.email}) {user.isActive === false && '(Inativo)'}</span>
-                        <span className="usuario-faculdade">Faculdade: {getFaculdadeName(user.faculdadeId)}</span>
-                        {/* Lógica corrigida para regras como objeto */}
-                        <span className="usuario-regras">
-                           Regras: {user.regras && typeof user.regras === 'object'
-                              ? Object.keys(user.regras).filter(regra => user.regras[regra] === true).join(', ')
-                              : (Array.isArray(user.regras) ? user.regras.join(', ') : 'N/A')
-                           }
-                        </span>
-                        <div className="usuario-actions">
-                             <button onClick={() => openEditModal(user)} title="Editar">
-                                <BsPencilSquare />
-                             </button>
-                             <button onClick={() => handleToggleActivity(user)} title={user.isActive === false ? 'Ativar Usuário' : 'Inativar Usuário'}>
-                                {user.isActive === false ? <FaToggleOff color="grey"/> : <FaToggleOn color="green"/>}
-                            </button>
-                        </div>
-                    </li>
-                 ))}
+                 {!loadingUsuarios && !error && currentUsers.length > 0 && currentUsers.map((user, index) => {
+                    // O `index` aqui é relativo à página (de 0 a 9). Para o número global, fazemos:
+                    const globalIndex = indexOfFirstItem + index;
+                    return (
+                        <li key={user.id || globalIndex}>
+                            <span className="usuario-nome">{globalIndex + 1} - {user.nome} {user.sobrenome} ({user.email}) {user.isActive === false && '(Inativo)'}</span>
+                            <span className="usuario-faculdade">Faculdade: {getFaculdadeName(user.faculdadeId)}</span>
+                            <span className="usuario-regras">
+                               Regras: {user.regras && typeof user.regras === 'object'
+                                  ? Object.keys(user.regras).filter(regra => user.regras[regra] === true).join(', ')
+                                  : (Array.isArray(user.regras) ? user.regras.join(', ') : 'N/A')
+                               }
+                            </span>
+                            <div className="usuario-actions">
+                                 <button onClick={() => openEditModal(user)} title="Editar">
+                                    <BsPencilSquare />
+                                 </button>
+                                 <button onClick={() => handleToggleActivity(user)} title={user.isActive === false ? 'Ativar Usuário' : 'Inativar Usuário'}>
+                                    {user.isActive === false ? <FaToggleOff color="grey"/> : <FaToggleOn color="green"/>}
+                                </button>
+                            </div>
+                        </li>
+                    );
+                 })}
                  {/* Mensagem de 'nenhum usuário' apenas se não estiver carregando E não houver erro E array vazio */}
                  {!loadingUsuarios && !error && usuarios.length === 0 && <li className="no-users-message">Nenhum usuário encontrado ou acesso negado.</li>}
             </ul>
+            <Paginacao
+                itensPorPagina={itensPorPagina}
+                totalItens={usuarios.length}
+                paginate={paginate}
+                currentPage={currentPage}
+            />
 
             {/* Modais */}
              {showAddModal && (
