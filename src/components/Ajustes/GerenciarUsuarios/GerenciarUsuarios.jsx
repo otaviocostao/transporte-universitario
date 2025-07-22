@@ -56,7 +56,7 @@ function GerenciarUsuarios() {
             if (isAdmin) {
                 console.log("GerenciarUsuarios: Usuário é admin, iniciando listener...");
                 setLoadingUsuarios(true); // Inicia o loading dos usuários
-                // Define a função de unsubscribe real
+                
                 unsubscribe = subscribeToUsuarios((data, err) => {
                     if (err) {
                         if (err.code === 'PERMISSION_DENIED') {
@@ -67,8 +67,18 @@ function GerenciarUsuarios() {
                         }
                         setUsuarios([]);
                     } else {
-                        setUsuarios(data || []);
-                        setError(null); // Limpa erro anterior se sucesso
+                        if (data && Array.isArray(data)) {
+                        
+                        const sortedData = [...data].sort((a, b) => {
+                            const nomeCompletoA = `${a.nome} ${a.sobrenome}`.toLowerCase();
+                            const nomeCompletoB = `${b.nome} ${b.sobrenome}`.toLowerCase();
+                            return nomeCompletoA.localeCompare(nomeCompletoB);
+                        });
+                        setUsuarios(sortedData);
+                    } else {
+                        setUsuarios([]);
+                    }
+                    setError(null);
                     }
                     setLoadingUsuarios(false); // Termina o loading dos usuários
                 });
