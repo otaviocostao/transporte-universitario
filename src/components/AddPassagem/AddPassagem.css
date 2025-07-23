@@ -5,27 +5,29 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+    align-content: center;
     flex-direction: row; 
     padding: 10px;
     margin: 0 auto; 
     }
 
   .add-passagem-button {
-      border-radius: 5px;
-      padding: 8px 12px;
-      display: flex; 
-      justify-content: center;
-      align-items: center;
-      border: 1px solid transparent;
-      font-size: 11pt;
-      background-color:  #4a6cf7;
-      cursor: pointer;
-      color: #ffff;
-      font-weight: 400;
+    border-radius: 5px;
+    padding: 8px 16px;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    border: none;
+    background-color: #0d6efd;
+    color: #fff;
+    font-size: 0.95rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
   }
   
   .add-passagem-button:hover {
-    background-color: #405ed9;
+    background-color: #0b5ed7;
   }
   
   .modal-container {

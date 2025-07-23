@@ -16,7 +16,7 @@
     display: flex;
     align-items: center;
     justify-content: start;
-    color: #4a6cf7;
+    color: #0d6efd;
     margin-left: 15px;
 }
 
@@ -32,7 +32,7 @@
     justify-content: center;
     align-items: center;
     font-size: 23pt;
-    color: #405ed9;
+    color: #0d6efd;
     background-color:transparent;
     border: none;
     margin-right: 10px;
@@ -40,7 +40,7 @@
   }
 
 .menu-button:hover{
-    color: #3650bc;
+    color: #0b5ed7;
 }
 
 

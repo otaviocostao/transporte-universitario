@@ -69,13 +69,13 @@ const EditFaculdadeModal = ({isOpen, onClose, onConfirm, faculdade}) => {
                     />
                 </label>
                 <label className='form-group checkbox-group'>
-                  <span>Embarque:</span>
                   <input
                       type="checkbox"
                       checked={embarque}
                       onChange={(e) => setEmbarque(e.target.checked)}
                       disabled={loading}
                   />
+                  <span>Botão de embarque</span>
                 </label>
                 <div className='area-add-faculdade-buttons'>
                     <button

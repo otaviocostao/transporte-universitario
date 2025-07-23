@@ -64,13 +64,13 @@ const AddFaculdadeModal = ({ isOpen, onClose, onConfirm }) => {
                     />
                 </label>
                 <label className='form-group checkbox-group'>
-                  <span>Adicionar botão para embarque:</span>
                   <input
                       type="checkbox"
                       checked={embarque}
                       onChange={(e) => setEmbarque(e.target.checked)}
                       disabled={loading}
                   />
+                  <span>Adicionar botão para embarque</span>
                 </label>
                 <div className='area-add-faculdade-buttons'>
                     <button

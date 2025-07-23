@@ -46,6 +46,7 @@
     gap: 0.5rem; 
     color: #393939;
     margin-bottom: 8px;
+    font-size: 0.95rem;
   }
   
 
@@ -58,39 +59,41 @@
     border-radius: 5px;
     width: 100%; 
     box-sizing: border-box;
-    
+    font-size: 0.9rem;
   }
   
   .area-edit-student-buttons {
     display: flex;
     justify-content: flex-end;
-    gap: 8px;
+    gap: 5px;
     margin-top: 8px;
   }
   
   .button-edit-student,
   .button-cancel-edit-student {
-    padding: 10px 15px;
+    padding: 8px 16px;
     border: none;
-    border-radius: 5px;
+    border-radius: 4px;
     cursor: pointer;
-    transition: background-color 0.2s ease;
+    font-weight: 500;
+    font-size: 0.9rem;
+    transition: all 0.2s ease;
   }
   
   .button-edit-student {
-    background-color: #4a6cf7;
+    background-color: #0d6efd;
     color: white;
   }
   
   .button-edit-student:hover {
-    background-color: #405ed9;
+    background-color: #0b5ed7;
   }
   
   .button-cancel-edit-student {
-    background-color: #818181;
-    color: #ffff;
+    background-color: #E2E5E9;
+    color: #080809;
   }
   
   .button-cancel-edit-student:hover {
-    background-color: #777777;
+    background-color: #d3d3d3;
   }

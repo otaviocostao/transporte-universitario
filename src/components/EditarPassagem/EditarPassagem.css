@@ -60,37 +60,3 @@
     box-sizing: border-box;
     
   }
-  
-  .area-edit-student-buttons {
-    display: flex;
-    justify-content: flex-end;
-    gap: 8px;
-    margin-top: 8px;
-  }
-  
-  .button-edit-student,
-  .button-cancel-edit-student {
-    padding: 10px 15px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.2s ease;
-  }
-  
-  .button-edit-student {
-    background-color: #4a6cf7;
-    color: white;
-  }
-  
-  .button-edit-student:hover {
-    background-color: #405ed9;
-  }
-  
-  .button-cancel-edit-student {
-    background-color: #818181;
-    color: #ffff;
-  }
-  
-  .button-cancel-edit-student:hover {
-    background-color: #777777;
-  }

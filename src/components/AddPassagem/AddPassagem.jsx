@@ -1,5 +1,7 @@
 import { useEffect, useState } from 'react';
 import './AddPassagem.css';
+import { BsPlusCircleFill} from "react-icons/bs";
+
 import FormAdicionarPassagem from '../FormAdicionarPassagem/FormAdicionarPassagem';
 
 const AddPassagem = ({onDateChange, selectedDate}) => {
@@ -33,7 +35,7 @@ const AddPassagem = ({onDateChange, selectedDate}) => {
     <div className='content-adicionar-passagem'>
       <h2>Passagens</h2>
       <button className='add-passagem-button' onClick={handleClickAddPassagem}>
-        Adicionar
+        <BsPlusCircleFill /> Adicionar
       </button>
 
       {/* Adiciona o container do modal */}
