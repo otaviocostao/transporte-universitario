@@ -161,22 +161,10 @@ import {
     const dataToUpdate = { ...usuarioData };
 
     delete dataToUpdate.email;
-    delete dataToUpdate.regras; 
     delete dataToUpdate.uid;
     delete dataToUpdate.id;
     delete dataToUpdate.createdAt;
-  
-    // Remova campos que NUNCA devem ser atualizados por esta função
-    // (O email geralmente não é alterado, e regras pode ter lógica própria)
-    delete dataToUpdate.email;
-    // Considere se 'regras' deve ser atualizado aqui ou por uma função separada.
-    // Se 'regras' PODE ser atualizado aqui, certifique-se que 'usuarioData.regras'
-    // já está no formato de OBJETO correto vindo do EditUsuarioModal.
-    // delete dataToUpdate.regras; // Descomente se regras NUNCA são atualizadas aqui.
-  
-    // Remove o UID se ele foi passado acidentalmente no objeto
-    delete dataToUpdate.uid;
-    delete dataToUpdate.id; // Remove id também, se existir
+    
   
     // Verifica se há algo para atualizar após as remoções
     if (Object.keys(dataToUpdate).length === 0) {

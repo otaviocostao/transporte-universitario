@@ -22,9 +22,8 @@ const EditUsuarioModal = ({ isOpen, onClose, onConfirm, faculdadesList, userToEd
       setNome(userToEdit.nome || '');
       setSobrenome(userToEdit.sobrenome || '');
       setFaculdadeId(userToEdit.faculdadeId || '');
-      // Verifica se 'admin' está presente no array de regras
-      setIsAdmin(userToEdit.regras && userToEdit.regras.includes('admin'));
-      // Limpa campos de senha ao abrir/trocar usuário
+      setIsAdmin(userToEdit.regras && userToEdit.regras.admin === true);
+    
       setError(null); // Limpa erros anteriores
     } else {
        // Limpa o formulário se userToEdit for nulo (embora não deva acontecer se isOpen=true)
@@ -62,19 +61,18 @@ const EditUsuarioModal = ({ isOpen, onClose, onConfirm, faculdadesList, userToEd
       return;
     }
 
-    // Validação de senha SÓ SE o campo de nova senha foi preenchido
-
     setLoading(true);
     setError(null);
 
     try {
-      // Montar os dados a serem atualizados
       const updatedData = {
-        uid: userToEdit.uid, // ou userToEdit.id, dependendo de como você armazena
         nome,
         sobrenome,
         faculdadeId,
-        regras: isAdmin ? ['admin', 'user'] : ['user'],
+        regras: {
+          user: true, 
+          admin: isAdmin,
+        },
       };
 
       await updateUsuarioData(userToEdit.id, updatedData);
