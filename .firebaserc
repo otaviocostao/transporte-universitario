@@ -2,6 +2,10 @@
   "projects": {
     "default": "transp-universitario-araci"
   },
-  "targets": {},
+  "targets": {
+    "transp-universitario-araci": {
+      "hosting": {}
+    }
+  },
   "etags": {}
 }

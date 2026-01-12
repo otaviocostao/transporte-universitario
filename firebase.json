@@ -1,5 +1,6 @@
 {
   "hosting": {
+    "site": "transp-universitario-araci",
     "public": "dist", 
     "ignore": [
       "firebase.json",
