@@ -1,39 +1,61 @@
-.modal-delete-overlay{
+.modal-delete-overlay {
     position: fixed;
-    width: 100%;
-    height: 100%;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(15, 23, 42, 0.5);
+    backdrop-filter: blur(4px);
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: rgba(0, 0, 0, 0.5); 
-    z-index: 1000;
-    top: 0;
-    left: 0;
-}
-
-.modal-delete-content{
-    background-color: #ffff;
+    z-index: 2000;
     padding: 20px;
-    border-radius: 10px;
-    max-width: 80%;
-    max-height: 80%;
-    overflow: auto;
-    position: relative;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
 }
 
-.modal-delete-buttons{
+.modal-delete-content {
+    background-color: #ffffff;
+    padding: 30px;
+    border-radius: 16px;
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    width: 100%;
+    max-width: 400px; /* Um pouco menor que o de cadastro por ter menos conteúdo */
+    max-height: 90vh;
+    overflow-y: auto;
+    animation: modalScale 0.2s ease-out;
+}
+
+@keyframes modalScale {
+    from { opacity: 0; transform: scale(0.95); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+.h3-modal-delete {
+    color: #1e293b;
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin-bottom: 12px;
+    letter-spacing: -0.5px;
+}
+
+.paragraph-modal-delete {
+    color: #475569;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin-bottom: 24px;
+}
+
+.modal-delete-buttons {
     display: flex;
     justify-content: flex-end;
-    margin-top: 20px;
-    gap: 5px;
+    gap: 12px;
 }
 
 .modal-delete-confirm,
 .modal-delete-cancel {
-    padding: 8px 16px;
+    padding: 8px 12px;
     border: none;
-    border-radius: 4px;
+    border-radius: 5px;
     cursor: pointer;
     font-weight: 500;
     font-size: 0.9rem;
@@ -41,27 +63,38 @@
 }
 
 .modal-delete-confirm {
-    background-color: #d9534f; /* Vermelho (cor de deletar) */
+    background-color: #dc2626;
     color: white;
+    box-shadow: 0 4px 6px -1px rgba(220, 38, 38, 0.2);
 }
 
 .modal-delete-confirm:hover {
-    background-color: #c94e4e; /* Vermelho (cor de deletar) */
+    background-color: #b91c1c;
 }
 
 .modal-delete-cancel {
-    background-color: #E2E5E9;
-    color: #080809;
+    background-color: #f1f5f9;
+    color: #475569;
 }
 
 .modal-delete-cancel:hover {
-    background-color: #d3d3d3;
+    background-color: #e2e8f0;
+    color: #1e293b;
 }
 
-.h3-modal-delete{
-    color: #393939;
-}
+@media screen and (max-width: 480px) {
+    .modal-delete-content {
+        padding: 24px;
+        border-radius: 12px;
+    }
 
-.paragraph-modal-delete{
-    color: #393939;
+    .modal-delete-buttons {
+        flex-direction: column-reverse;
+        gap: 8px;
+    }
+
+    .modal-delete-confirm,
+    .modal-delete-cancel {
+        width: 100%;
+    }
 }

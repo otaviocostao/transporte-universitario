@@ -39,10 +39,6 @@ const AddButton = ({ onDateChange, selectedDate }) => {
 
   return (
     <div className='add-button-area'>
-      <div className="date-area">
-        <p className='paragraph-date'>Lista do dia: </p>
-        <span>{formatDate(currentDate)}</span>
-      </div>
       <button className='add-button' onClick={handleClickAddForm}>
         <BsPlusCircleFill /> Adicionar
       </button>

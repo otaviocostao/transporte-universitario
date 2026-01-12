@@ -1,9 +1,6 @@
 .add-button-area{
-    width: 28%;
-    padding: 20px;
+    width: fit-content;
     display: flex;
-    align-items: center;
-    justify-content: space-between;
 }
 
 .date-area{
@@ -23,64 +20,34 @@
 }
 
 
-.add-button {
-    border-radius: 5px;
-    padding: 8px 16px;
+  .add-button {
     display: inline-flex;
     align-items: center;
+    justify-content: center;
     gap: 8px;
+    padding: 8px 16px;
+    background-color: #0d6efd;
+    color: #ffffff;
     border: none;
-    background-color: #0d6efd; /* Azul padrão Bootstrap */
-    color: #fff;
-    font-size: 0.95rem;
-    font-weight: 500;
+    border-radius: 5px;
+    font-size: 0.9375rem;
+    font-weight: 600;
     cursor: pointer;
-    transition: background-color 0.2s ease;
-  }
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 4px 6px -1px rgba(13, 110, 253, 0.08);
+}
   
 .add-button:hover {
-    background-color: #0b5ed7; /* Azul mais escuro */
-  }
+    background-color: #0b5ed7;
+    box-shadow: 0 10px 15px -3px rgba(13, 110, 253, 0.08);
+}
+
+.add-button:active {
+    transform: translateY(0);
+    background-color: #0a58ca;
+}
+
+.add-button svg {
+    font-size: 1.1rem;
+}
   
-
-  
-/* Ajustes para telas menores */
-@media screen and (max-width: 1024px) {
-    .add-button-area{
-        width: 730px;
-    }
-}
-
-@media screen and (max-width: 768px) {
-    .add-button-area{
-        width: 600px;
-    }
-}
-
-@media screen and (max-width: 480px) {
-    .add-button-area{
-        width: 90%;
-    }
-}
-
-@media screen and (max-width: 390px) {
-    .add-button-area{
-        width: 90%;
-    }
-
-    .date-area{
-        width: 60%;
-        margin-left:5px;
-    }
-}
-
-
-@media screen and (max-width: 320px) {
-    .date-area{
-      font-size: 10pt;
-    }
-
-    .add-button{
-        font-size: 10pt;
-    }
-  }

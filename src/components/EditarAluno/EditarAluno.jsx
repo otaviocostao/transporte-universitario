@@ -115,8 +115,8 @@ const EditarAluno = ({ isOpen, onClose, onConfirm, aluno }) => {
   const isSelectDisabled = loadingFaculdades || !faculdadesList || faculdadesList.length === 0;
 
   return (
-    <div className='area-edit-student-overlay' onClick={handleOverlayClick}>
-      <div className='edit-student-content' onClick={(e) => e.stopPropagation()}>
+    <div className='area-edit-student-modal-overlay' onClick={handleOverlayClick}>
+      <div className='edit-student-modal-content' onClick={(e) => e.stopPropagation()}>
         <h3 className='h3-form-edit-student'>Editar Aluno</h3>
 
         {error && <div className="error-message">{error}</div>}

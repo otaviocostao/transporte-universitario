@@ -1,44 +1,58 @@
+* {
+    box-sizing: border-box;
+}
+
 .inicio-container {
     width: 100%;
-    display: flex;
-    align-items: center;
-    flex-direction: column;
     min-height: 100vh; 
+    display: flex;
+    flex-direction: column;
     margin: 0;
     padding: 0;
+    background-color: #f5f7fb; /* Cor de fundo padrão para evitar buracos brancos */
 }
 
-.area-bar-content{
+/* Container que segura a Navbar e o Conteúdo */
+.area-bar-content {
     width: 100%;
     display: flex;
-    flex-direction: row;
+    flex-direction: column; /* No mobile, bar e conteúdo devem empilhar */
 }
 
-.inicio-content{
+.inicio-content {
     width: 100%;
+    max-width: 100%; 
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: start;
+    justify-content: flex-start;
     flex-grow: 1;
+    padding: 0 10px; 
 }
 
-
-/* Ajustes para telas menores */
 @media screen and (max-width: 1024px) {
-    
+    .inicio-content {
+        padding: 0 15px;
+    }
 }
 
 @media screen and (max-width: 768px) {
-    
+    .inicio-content {
+        padding: 0 10px;
+    }
 }
 
 @media screen and (max-width: 480px) {
-   .inicio-content{
-        width: 95vw ;
+   .inicio-content {
+        width: 100%;
+        padding: 0 8px;
    }
 }
 
-@media screen and (max-width: 390px) {
-   
+.container-lista-alunos, 
+.container-lista-passagens {
+    width: 100% !important;
+    max-width: 100% !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
 }

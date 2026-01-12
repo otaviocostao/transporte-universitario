@@ -18,7 +18,9 @@ function Inicio() {
   const [passagens, setPassagens] = useState([]);
 
   const [faculdades, setFaculdades] = useState([]);
-  
+
+  const [currentDate, setCurrentDate] = useState(selectedDate || new Date());
+
     useEffect(() => {
       const fetchFaculdades = async () => {
         try {
@@ -68,14 +70,17 @@ function Inicio() {
     return () => listaPassagens();
   }, [selectedDate]);
 
+  
+  const formatDate = (date) => {
+    return date.toLocaleDateString('pt-BR');
+  };
+
   return (
     <div className="inicio-container">
       <BarraNavegacao />
       <div className='inicio-content'>
         <main className="inicio-content">
-          <AddButton
-            selectedDate={selectedDate}
-          />
+          
           <ListaAlunos
             students={students}
             loading={loading}

@@ -1,257 +1,214 @@
-.container-lista-alunos{
-    width: 30vw;
-    height: auto;
+.container-lista-alunos {
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
+    padding: 20px;
 }
 
-
-
-.lista-alunos{
-    width: 90%;
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
+.lista-alunos {
+    width: 100%;
+    background-color: #ffffff;
+    border-radius: 16px;
     padding: 10px;
-    border-radius: 5px;
-    background-color: #ffff;
-    margin: 0;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
-    font-size: 10pt;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
 }
 
-.ul-lista-alunos{
+.ul-lista-alunos {
     list-style: none;
-    margin: 0;
+    margin: 0 0 24px 0;
     padding: 0;
 }
 
-.paragraph-area{
-    
-    display: flex;
-    justify-content: start;
-    align-items: center;
+.ul-lista-alunos:last-child {
+    margin-bottom: 0;
 }
 
-.paragraph-college{
-    font-size: 14pt;
-    
+.li-college {
+    display: flex;
+    padding: 12px 8px;
+    border-bottom: 2px solid #f1f5f9;
+}
+
+.paragraph-college {
+    font-size: 1.1rem;
     font-weight: 700;
-    color: #393939;
+    color: #1e293b;
+    margin: 0;
+    letter-spacing: -0.3px;
 }
 
-.paragraph-student{
-    height: 100%;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-    color: #393939;
-    gap: 0.3rem;
-}
-
-.li-student{
+.li-student {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 4px;
-    flex-wrap: wrap;
-    border-bottom: #99999986 1px solid;
-    color: #292929;
+    padding: 12px 8px;
+    border-bottom: 1px solid #f1f5f9;
+    transition: background-color 0.2s ease;
 }
 
-.li-college{
+.li-student:hover {
+    background-color: #f8fafc;
+}
+
+.li-student:last-child {
+    border-bottom: none;
+}
+
+.paragraph-area {
     display: flex;
+    align-items: center;
+    flex: 1;
 }
 
-.stats-volta,
+.paragraph-student {
+    margin: 0;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 6px;
+    color: #334155;
+    font-size: 0.95rem;
+    font-weight: 500;
+}
+
+.stats-liberado,
 .stats-nao-volta,
-.stats-liberado{
-    height: 100%;
+.stats-volta {
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    padding: 4px 8px;
+    border-radius: 6px;
     display: inline-flex;
     align-items: center;
-    justify-content: center;
-    font-size: 10pt;
-    border-radius: 4px;
-    padding-inline: 3px;
-    padding-block: 3px;
     line-height: 1;
-    white-space: nowrap;
-    vertical-align: middle; 
 }
 
 .stats-liberado {
-    background-color: rgba(40, 167, 69, 0.25);
-    color: #198754;
-  }
-  
-  .stats-nao-volta {
-    background-color: rgba(220, 53, 69, 0.2);
-    color: #dc3545;
-  }
-  
-  .stats-volta {
-    background-color: rgba(108, 117, 125, 0.2);
-    color: #6c757d;
-  }
+    background-color: #dcfce7;
+    color: #15803d;
+}
 
-.list-buttons{
+.stats-nao-volta {
+    background-color: #fee2e2;
+    color: #b91c1c;
+}
+
+.stats-volta {
+    background-color: #f1f5f9;
+    color: #475569;
+}
+
+.list-buttons {
     display: flex;
-    flex-wrap: wrap;
+    align-items: center;
+    gap: 4px;
 }
 
 .button-ready,
-.button-edit,
-.button-delete {
-    border-radius: 5px;
-    padding: 5px;
+.button-dots {
+    width: 36px;
+    height: 36px;
     display: flex;
     justify-content: center;
     align-items: center;
-    border: 1px solid transparent;
-    font-size: 16pt;
-    font-family: inherit;
+    border: none;
     background-color: transparent;
+    border-radius: 8px;
+    color: #64748b;
+    font-size: 1.25rem;
     cursor: pointer;
-  }
-
-.button-ready {
-    color: #6c757d;
-    margin-right: 5px;
-  }
-   
-
-  
-.button-edit {
-      color: #6c757d;
-      margin-right: 5px;
-      
+    transition: all 0.2s ease;
 }
 
-
-.button-delete {
-    color: #6c757d;
-
-  }
-
-  .button-ready:hover,
-  .button-edit:hover,
-  .button-delete:hover {
-    background-color: #eef1fd;
-  }
-
-
-/* Ajustes para telas menores */
-@media screen and (max-width: 1024px) {
-    .container-lista-alunos {
-        width: 90%;
-    }
-
-    .lista-alunos {
-        width: 80%;
-    }
-
-    .li-student {
-        display: flex;
-        flex-direction: row;
-    }
-
-    
+.button-ready:hover {
+    background-color: #f0fdf4;
+    color: #16a34a;
 }
 
-@media screen and (max-width: 768px) {
-    .container-lista-alunos {
-        width: 100%;
-
-    }
-
-
-    .lista-alunos {
-        width: 80%;
-        padding: 10px;
-    }
-
-    .li-student {
-        display: flex;
-        flex-direction: row;
-    }
+.button-dots:hover {
+    background-color: #f1f5f9;
+    color: #1e293b;
 }
 
-@media screen and (max-width: 480px) {
-    .container-lista-alunos {
-        width: 100%;
-        
-    }
-
-    .lista-alunos {
-        width: 90%;
-    }
-
-    .li-student {
-        display: flex;
-        flex-direction: row;
-    }
-
-    .button-ready,
-    .button-edit,
-    .button-delete{
-        font-size: 12pt;
-    } 
+.menu-acoes-container {
+    position: relative;
 }
 
-@media screen and (max-width: 390px) {
+.dropdown-menu {
+    position: absolute;
+    right: 0;
+    top: calc(100% + 5px);
+    background-color: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+    z-index: 50;
+    min-width: 140px;
+    padding: 6px;
+    animation: fadeIn 0.15s ease-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-5px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.dropdown-menu button {
+    width: 100%;
+    padding: 10px 12px;
+    border: none;
+    background: none;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    border-radius: 8px;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: #475569;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.dropdown-menu button:hover {
+    background-color: #f1f5f9;
+    color: #1e293b;
+}
+
+.button-edit:hover {
+    color: #0d6efd !important;
+}
+
+.button-delete:hover {
+    color: #dc2626 !important;
+}
+
+.no-students-message {
+    text-align: center;
+    padding: 40px 20px;
+    color: #64748b;
+    font-size: 0.95rem;
+}
+
+@media (max-width: 640px) {
     .container-lista-alunos {
         width: 100%;
-        padding: 5px;
+        padding: 6px;
     }
 
-    .lista-alunos {
-        width: 90%;
+    .lista-alunos { 
+        border-radius: 12px;
     }
 
-    .li-student {
-        display: flex;
-        flex-direction: row;
+    .paragraph-student {
+        font-size: 0.9rem;
     }
 
-
-    .button-ready,
-    .button-edit,
-    .button-delete{
-        font-size: 12pt;
-    } 
-
-    .no-students-message{
-        font-size: 10pt;
-    }
-}
-
-@media screen and (max-width: 320px) {
-    .container-lista-alunos {
-        width: 100%;
-        padding: 5px;
-    }
-
-    .lista-alunos {
-        width: 95%;
-    }
-
-    .li-student {
-        display: flex;
-        flex-direction: row;
-    }
-
-
-        
-    .button-ready,
-    .button-edit,
-    .button-delete{
-        font-size: 12pt;
-    } 
-
-    .no-students-message{
-        font-size: 10pt;
+    .button-ready, .button-dots {
+        width: 32px;
+        height: 32px;
     }
 }

@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import { useNavigate, Navigate } from 'react-router-dom';
 import { useAuth } from '../../contexts/AuthContext';
 import './Login.css';
+import Footer from '../../components/Footer/Footer';
 
 const Login = () => {
   // Hooks de estado do formulário
@@ -55,45 +56,49 @@ const Login = () => {
   // Renderiza o formulário apenas se não estiver carregando E não houver usuário logado
   return (
     <div className="login-container">
-      <div className="login-card">
-        <div className='login-card-top'>
-            <h2>Transporte Universitário</h2>
+      <div className="login-content"> 
+
+        <div className="login-card">
+          <div className='login-card-top'>
+              <h2>Transporte Universitário</h2>
+          </div>
+          {error && <div className="error-message">{error}</div>}
+          <form onSubmit={handleSubmit} className='form-login'>
+              <label className='input-area'>
+                  <div className='label-area'>
+                          <span>E-mail:</span>
+                      </div>
+                      <input
+                      type="email"
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+                      required
+                      disabled={loading} // Desabilita input durante o loading do form
+                      />
+              </label>
+              <label className='input-area'>
+                      <div className='label-area'>
+                          <label>Senha:</label>
+                      </div>
+                      <input
+                      type="password"
+                      value={password}
+                      onChange={(e) => setPassword(e.target.value)}
+                      required
+                      disabled={loading} // Desabilita input durante o loading do form
+                      />
+              </label>
+            <button
+              type="submit"
+              className="login-button"
+              disabled={loading} // Usa o loading DO FORMULÁRIO
+            >
+              {loading ? 'Entrando...' : 'Entrar'}
+            </button>
+          </form>
         </div>
-        {error && <div className="error-message">{error}</div>}
-        <form onSubmit={handleSubmit} className='form-login'>
-            <label className='input-area'>
-                <div className='label-area'>
-                        <span>E-mail:</span>
-                    </div>
-                    <input
-                    type="email"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    required
-                    disabled={loading} // Desabilita input durante o loading do form
-                    />
-            </label>
-            <label className='input-area'>
-                    <div className='label-area'>
-                        <label>Senha:</label>
-                    </div>
-                    <input
-                    type="password"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                    required
-                    disabled={loading} // Desabilita input durante o loading do form
-                    />
-            </label>
-          <button
-            type="submit"
-            className="login-button"
-            disabled={loading} // Usa o loading DO FORMULÁRIO
-          >
-            {loading ? 'Entrando...' : 'Entrar'}
-          </button>
-        </form>
       </div>
+      <Footer />
     </div>
   );
 };

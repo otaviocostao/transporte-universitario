@@ -1,6 +1,6 @@
-import React, { useState, useEffect, useMemo } from "react";
+import React, { useState, useEffect, useMemo, useRef } from "react";
 import "./ListaAlunos.css";
-import { BsTrash3Fill, BsPencilSquare, BsCheckSquare, BsArrowUpSquare } from "react-icons/bs";
+import { BsTrash3Fill, BsPencilSquare, BsCheckSquare, BsArrowUpSquare, BsThreeDots } from "react-icons/bs";
 // IMPORTANTE: Adicionar a importação da nova função
 import { toggleEmbarqueStatus } from "../../services/studentService";
 import ModalDelete from "../ModalDelete/ModalDelete";
@@ -9,8 +9,8 @@ import {
   deleteStudent,
   toggleStudentStatus,
   updateStudent,
-  // Remova toggleEmbarcadoStatus daqui se importou acima
 } from "../../services/studentService"; // Verifique se toggleEmbarcadoStatus está aqui ou importado separadamente
+import AddButton from "../AddButton/AddButton";
 
 const ListaAlunos = ({ students, loading, error, faculdadesList, selectedDate }) => {
   const [showModal, setShowModal] = useState(false);
@@ -137,6 +137,30 @@ const ListaAlunos = ({ students, loading, error, faculdadesList, selectedDate })
     });
     return entries;
   }, [groupedStudents, priorityLookup]);
+  
+  const [menuAberto, setMenuAberto] = useState(null);
+  
+     const menuRef = useRef(null);
+  
+    useEffect(() => {
+      const handleClickFora = (event) => {
+        if (menuRef.current && !menuRef.current.contains(event.target)) {
+          setMenuAberto(null);
+        }
+      };
+  
+      if (menuAberto !== null) {
+        document.addEventListener('mousedown', handleClickFora);
+      }
+  
+      return () => {
+        document.removeEventListener('mousedown', handleClickFora);
+      };
+    }, [menuAberto]); 
+
+  const toggleMenu = (id) => {
+    setMenuAberto(menuAberto === id ? null : id);
+  };
 
   // --- Renderização ---
 
@@ -145,7 +169,12 @@ const ListaAlunos = ({ students, loading, error, faculdadesList, selectedDate })
 
   return (
     <div className="container-lista-alunos">
-      <div className='titulo-passagens'><h3>Transporte fixo</h3></div>
+      <div className='titulo-passagens'>
+        <h3>Transporte fixo</h3>
+        <AddButton
+            selectedDate={selectedDate}
+          />
+      </div>
       <div className="lista-alunos">
         {sortedFacultyEntries.length === 0 ? (
           <p className="no-students-message">Nenhum estudante cadastrado para esta data.</p>
@@ -195,8 +224,33 @@ const ListaAlunos = ({ students, loading, error, faculdadesList, selectedDate })
                         </button>
                       )}
                       {/* Botões de Editar e Deletar (mantidos) */}
-                      <button className="button-edit" onClick={() => handleEditClick(aluno)}><BsPencilSquare /></button>
-                      <button className="button-delete" onClick={() => handleDeleteClick(aluno)}><BsTrash3Fill /></button>
+                      <div className="menu-acoes-container" ref={menuAberto === aluno.id ? menuRef : null}>
+                      <button 
+                        className="button-dots" 
+                        onClick={() => toggleMenu(aluno.id)}
+                      >
+                        <BsThreeDots />
+                      </button>
+
+                      {/* Renderização Condicional do Menu */}
+                      {menuAberto === aluno.id && (
+                        <div className="dropdown-menu">
+                          <button 
+                            className="button-edit" 
+                            onClick={() => { handleEditClick(aluno); setMenuAberto(null); }}
+                          >
+                            <BsPencilSquare /> Editar
+                          </button>
+                          
+                          <button 
+                            className="button-delete" 
+                            onClick={() => { handleDeleteClick(aluno); setMenuAberto(null); }}
+                          >
+                            <BsTrash3Fill /> Excluir
+                          </button>
+                        </div>
+                      )}
+                    </div>
                     </div>
                   </li>
                 ))}

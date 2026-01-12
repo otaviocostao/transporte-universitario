@@ -3,7 +3,9 @@ import './Footer.css'
 const Footer = () => {
   return (
     <div className='footer-area'>
-      <p className='paragraph-footer'>©2025 - Transporte universitário - Desenvolvido por Otavio Costa </p>
+      <p className='paragraph-footer'>
+        ©{new Date().getFullYear()} - Transporte Universitário - Desenvolvido por Otavio Costa 
+      </p>
     </div>
   )
 }

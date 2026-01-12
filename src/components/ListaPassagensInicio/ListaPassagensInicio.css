@@ -1,160 +1,136 @@
-.container-lista-passagens{
-    width: 30vw;
-    height: auto;
+.container-lista-passagens {
+    width: 100%;
+    max-width: 800px;
+    margin: 20px auto;
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
-    margin-top: 15px;
+    padding: 0 20px;
 }
-
-.lista-passagens{
-    width: 90%;
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    padding: 10px;
-    border-radius: 5px;
-    background-color: #ffff;
-    margin: 0;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
-    font-size: 10pt;
-}
-
 
 .titulo-passagens{
-    width: 90%;
+    width: 100%;
+    padding-inline: 10px;
+    margin-top: 10px;
     display: flex;
     align-items: center;
-    justify-content: start;
+    justify-content: space-between;
     color: #393939;
 }
 
-.ul-lista-passagens{
+.lista-passagens {
+    width: 100%;
+    background-color: #ffffff;
+    border-radius: 16px;
+    padding: 8px;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+}
+
+.ul-lista-passagens {
     list-style: none;
     margin: 0;
     padding: 0;
 }
 
-
-.paragraph-area{
-    
-    display: flex;
-    justify-content: start;
-    align-items: center;
-}
-
-
-.paragraph-passagens{
-    height: 100%;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-    color: #393939;
-    gap: 0.3rem;
-}
-
-.li-passagens{
+.li-passagens {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 4px;
+    padding: 14px 16px;
+    border-bottom: 1px solid #f1f5f9;
+    transition: background-color 0.2s ease;
+}
+
+.li-passagens:last-child {
+    border-bottom: none;
+}
+
+.li-passagens:hover {
+    background-color: #f8fafc;
+}
+
+.paragraph-area {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex: 1;
+}
+
+.paragraph-passagens {
+    margin: 0;
+    display: flex;
+    align-items: center;
     flex-wrap: wrap;
-    border-bottom: #99999986 1px solid;
-    color: #292929;
+    gap: 8px;
+    color: #334155;
+    font-size: 0.95rem;
+    font-weight: 600;
 }
 
-
-@media screen and (max-width: 1024px) {
-    .container-lista-passagens {
-        width: 90%;
-    }
-
-    .lista-passagens {
-        width: 80%;
-    }
-
-    .li-student {
-        display: flex;
-        flex-direction: row;
-    }
-
-    
+/* Reutilizando o padrão de badges */
+.stats-volta,
+.stats-nao-volta {
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    padding: 4px 8px;
+    border-radius: 6px;
+    line-height: 1;
 }
 
-@media screen and (max-width: 768px) {
-    .container-lista-passagens {
-        width: 100%;
-
-    }
-
-
-    .lista-passagens {
-        width: 80%;
-        padding: 10px;
-    }
-
-    .li-student {
-        display: flex;
-        flex-direction: row;
-    }
+.stats-volta {
+    background-color: #e0f2fe;
+    color: #0369a1;
 }
 
-@media screen and (max-width: 480px) {
-    .container-lista-passagens {
-        width: 100%;
-        
-    }
-
-    .lista-passagens {
-        width: 90%;
-    }
-
-    .li-student {
-        display: flex;
-        flex-direction: row;
-    }
- 
+.stats-nao-volta {
+    background-color: #fee2e2;
+    color: #b91c1c;
 }
 
-@media screen and (max-width: 390px) {
-    .container-lista-passagens {
-        width: 100%;
-        padding: 5px;
-    }
-
-    .lista-passagens {
-        width: 90%;
-    }
-
-    .li-student {
-        display: flex;
-        flex-direction: row;
-    }
-
-
-    .no-students-message{
-        font-size: 10pt;
-    }
+.li-passagens > span {
+    color: #cbd5e1;
+    margin: 0 10px;
 }
 
-@media screen and (max-width: 320px) {
+.li-passagens p:last-child {
+    margin: 0;
+    color: #64748b;
+    font-size: 0.875rem;
+    font-weight: 500;
+    background-color: #f1f5f9;
+    padding: 4px 10px;
+    border-radius: 20px;
+}
+
+.no-students-message {
+    text-align: center;
+    padding: 30px;
+    color: #94a3b8;
+    font-size: 0.9rem;
+    margin: 0;
+}
+
+@media (max-width: 640px) {
     .container-lista-passagens {
-        width: 100%;
-        padding: 5px;
+        padding: 0 6px;
     }
 
-    .lista-passagens {
-        width: 95%;
+    .li-passagens {
+        align-items: flex-start;
+        gap: 8px;
     }
 
-    .li-student {
-        display: flex;
-        flex-direction: row;
+    .li-passagens > span {
+        display: none; /* Esconde o traço no mobile para empilhar melhor */
     }
 
-    .no-students-message{
-        font-size: 10pt;
+    .paragraph-passagens {
+        font-size: 0.9rem;
+    }
+
+    .li-passagens p:last-child {
+        font-size: 0.8rem;
+        width: fit-content;
     }
 }
